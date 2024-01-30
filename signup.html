@@ -1,0 +1,367 @@
+﻿<!DOCTYPE html>
+<!-- Fix version build 2 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css?v=4">
+    <link rel="stylesheet" type="text/css" href="assets/css/toasts.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="gh/lipis/flag-icons%406.6.6/css/flag-icons.min.css">
+
+    <!--
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9G8THJPSFY"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-9G8THJPSFY');
+    </script>
+
+    <script type="text/javascript" >
+    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+    m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+    ym(89910388, "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true,
+            webvisor:true
+    });
+    </script>
+    
+    <noscript><div><img src="https://mc.yandex.ru/watch/89910388" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    -->
+
+</head>
+
+<body>
+    <script src="assets/libs/jquery.min.js"></script>
+
+    <!--<script src="/assets/js/languages/be.js"></script>
+    <script src="/assets/js/languages/pl.js"></script>-->
+    <script src="assets/js/languages/uk.js"></script>
+    <script src="assets/js/languages/ru.js"></script>
+    <script src="assets/js/translator.js?v=2"></script>
+    <script src="assets/js/toasts.js"></script>
+    
+    <script src="assets/libs/lazysizes.min.js"></script>
+    <script src="assets/libs/microplugin.min.js"></script>
+    <script src="assets/libs/sifter.min.js"></script>
+    <script src="assets/libs/selectize.min.js"></script>
+    <script src="assets/js/top_decorator.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script type="text/javascript" src="firebasejs/3.6.8/firebase.js"></script>
+    <script type="text/javascript" src="assets/js/pushes.js"></script> 
+
+<title>Join Demonlist</title>
+
+<style type="text/css">
+    .no-auth-form__is-member{
+        margin-top: 0;
+    }
+</style>
+
+<div class="container">
+    <header class="header header-sticky">
+    <ul class="navbar">
+        <div class="navbar__mobile-container">
+            <div class="navbar__mobile-btn"></div>
+        </div>
+        <div class="navbar__container navbar__container--mobile">
+            
+            <a class="navbar__link navbar__link__logo" href="index.htm"><i class="bi bi-globe-americas"></i> GLOBAL LIST</a>
+            
+            <div class="navbar__mobile-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <div class="navbar__container">
+            <div class="navbar__left">
+                <li class="navbar__item">
+                    <a class="navbar__link navbar__link__logo" href="index.htm"><i class="bi bi-globe-americas"></i> GLOBAL LIST</a>
+                </li>
+                <li class="navbar__item">
+                    <a href="javascript:void(0)" class="navbar__link"><i class="bi bi-list"></i> Lists</a>
+                    <div class="navbar__dropdown-content">
+                        <a class="navbar__link" href="index.htm">Main</a>
+                        <a class="navbar__link" href="beyondlist.html">Beyond</a>
+                        <a class="navbar__link" href="futurelist.html">Future</a>
+                    </div>
+                </li>
+                <li class="navbar__item">
+                    <a href="javascript:void(0)" class="navbar__link"><i class="bi bi-grid"></i> More</a>
+                    <div class="navbar__dropdown-content">
+
+                        <span class="navbar__link navbar__link--has-menu">
+                            <a class="navbar__link" href="javascript:void(0)">
+                                Record Submit
+                                <i class="bi bi-caret-right-fill"></i>
+                            </a>
+                            <span class="navbar__dropdown-content navbar__dropdown-content--sub-menu">
+                                <a class="navbar__link" href="submit/index.htm">Request</a>
+                                <a class="navbar__link" href="suggest/index.htm">Suggest</a>
+                            </span>
+                        </span>
+
+                        <a class="navbar__link" href="level_submit.html">Level Submit</a>
+                        <a class="navbar__link" href="top/players/index.htm">Top Players</a>
+
+                        <span class="navbar__link navbar__link--has-menu">
+                            <a class="navbar__link" href="javascript:void(0)">
+                                Top Countries
+                                <i class="bi bi-caret-right-fill"></i>
+                            </a>
+                            <span class="navbar__dropdown-content navbar__dropdown-content--sub-menu">
+                                <a class="navbar__link" href="top/countries/main/index.htm">Main</a>
+                                <a class="navbar__link" href="top/countries/advanced/index.htm">Advanced</a>
+                            </span>
+                        </span>
+
+                        <a class="navbar__link" href="rules.html">Rules</a>
+                        <a class="navbar__link" href="contacts.html">Contacts</a>
+                        <a class="navbar__link" href="roulette.html">Demon Roulette</a>
+                    </div>
+                </li>
+                <li class="navbar__item">
+                    <a href="javascript:void(0)" class="navbar__link"><i class="bi bi-globe"></i>Language</a>
+                    <div class="navbar__dropdown-content">
+                        <a class="navbar__link lang-select" data-lang="en" href="javascript:void(0)">
+                            <span class="fi fi-gb"></span>
+                            English
+                        </a>
+                        <a class="navbar__link lang-select" data-lang="ru" href="javascript:void(0)">
+                            <span class="fi fi-ru"></span>
+                            Русский
+                        </a>
+                        <a class="navbar__link lang-select" data-lang="uk" href="javascript:void(0)">
+                            <span class="fi fi-ua"></span>
+                            Українська
+                        </a>
+                    </div>
+                </li>
+
+                <li class="navbar__item">
+                    <a href="javascript:void(0)" class="navbar__link"><i class="bi bi-newspaper"></i>Our Social</a>
+                    <div class="navbar__dropdown-content">
+                        <a class="navbar__link" href="https://discord.gg/va8jt85Tev" target="_blank">
+                            <i class="bi bi-discord"></i>
+                            Discord
+                        </a>
+                        <a class="navbar__link" href="https://t.me/rebuildthegloballist" target="_blank">
+                            <i class="bi bi-telegram"></i>
+                            Telegram
+                        </a>
+                    </div>
+                </li>
+                
+                
+                            </div>
+
+            <div class="navbar__right">
+                    <li class="navbar__item">
+        <a class="navbar__link" href="signup.html"><i class="bi bi-rocket-takeoff"></i> Sign up</a>
+    </li>
+    <li class="navbar__item">
+        <a class="navbar__link" href="signin.html"><i class="bi bi-person"></i> Sign in</a>
+    </li>            </div>
+        </div>
+    </ul>
+</header>
+    <div class="content content--center">
+        <form class="no-auth-form" id="signup__form--getingCode">
+            <h1 class="no-auth-form__title">Join Demonlist</h1>
+    
+            <div class="no-auth-form__content">
+                <div class="no-auth-form__input-wrap">
+                    <input class="no-auth-form__input" id="signup__login" type="text" name="login" placeholder="Username" required="">
+                </div>
+    
+                <div class="no-auth-form__input-wrap">
+                    <input class="no-auth-form__input" id="signup__email" type="email" name="email" placeholder="Email" required="">
+                </div>
+    
+                <div class="no-auth-form__input-wrap">
+                    <input class="no-auth-form__input" id="signup__password" type="password" name="password" placeholder="Password" required="">
+                </div>
+    
+                <div class="no-auth-form__input-wrap">
+                    <input class="no-auth-form__input" id="signup__repeat" type="password" placeholder="Repeat password" required="">
+                </div>
+                
+                <input type="hidden" name="action" value="getingCode">
+    
+                <div class="no-auth-form__is-member">
+                    <span>You're a Top player?</span>
+                    <a class="no-auth-form__signin-link" href="contacts.html">Proof this</a>
+                </div>
+
+                <div class="no-auth-form__is-member">
+                    <span>Have an account?</span>
+                    <a class="no-auth-form__signin-link" href="signin.html">Sign In</a>
+                </div>
+    
+                <input class="no-auth-form__submit" type="submit" value="Sign Up">
+            </div>
+        </form>
+    
+        <form class="no-auth-form no-auth-form--hide" id="signup__form--verifying">
+            <h1 class="no-auth-form__title">Join Demonlist</h1>
+    
+            <div class="no-auth-form__content">
+                <input class="no-auth-form__input" id="signup__code" type="text" name="code" placeholder="Activation code" required="">
+                <input type="hidden" name="action" value="verifying">
+    
+                <div class="no-auth-form__is-member">
+                    <span>Have an account?</span>
+                    <a class="no-auth-form__signin-link" href="signin.html">Sign In</a>
+                </div>
+    
+                <input class="no-auth-form__submit" type="submit" value="Sign Up">
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="assets/js/signup.js"></script><div class="backdrop">
+</div>
+<ul class="header header--mobile">
+    <div class="header__mobile-control">
+        <div class="navbar__mobile-btn navbar__mobile-btn--close">
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+
+    <li class="navbar__item">
+        <a href="javascript:void(0)" class="navbar__link navbar__link--dropdown-icon"><i class="bi bi-list"></i>
+            Lists</a>
+        <div class="navbar__dropdown-content">
+            <a class="navbar__link" href="index.htm">Main</a>
+            <a class="navbar__link" href="beyondlist.html">Beyond</a>
+            <a class="navbar__link" href="futurelist.html">Future</a>
+        </div>
+    </li>
+
+    <li class="navbar__item">
+        <a href="javascript:void(0)" class="navbar__link navbar__link--dropdown-icon"><i class="bi bi-grid"></i>
+            More</a>
+        <div class="navbar__dropdown-content">
+            <a class="navbar__link" href="submit.html">Record Submit</a>
+            <a class="navbar__link" href="suggest.html">Record Suggest</a>
+            <a class="navbar__link" href="level_submit.html">Level Submit</a>
+            <a class="navbar__link" href="top/players/index.htm">Top Players</a>
+            <a class="navbar__link" href="top/countries/main/index.htm">Top Countries (Main)</a>
+            <a class="navbar__link" href="top/countries/advanced/index.htm">Top Countries (Advanced)</a>
+            <a class="navbar__link" href="rules.html">Rules</a>
+            <a class="navbar__link" href="contacts.html">Contacts</a>
+            <a class="navbar__link" href="roulette.html">Demon Roulette</a>
+        </div>
+        
+    <li class="navbar__item">
+        <a href="javascript:void(0)" class="navbar__link navbar__link--dropdown-icon"><i class="bi bi-globe"></i>Language</a>
+        <div class="navbar__dropdown-content">
+            <a class="navbar__link lang-select" data-lang="en" href="javascript:void(0)">
+                <span class="fi fi-gb"></span>
+                English
+            </a>
+            <a class="navbar__link lang-select" data-lang="ru" href="javascript:void(0)">
+                <span class="fi fi-ru"></span>
+                Русский
+            </a>
+            <a class="navbar__link lang-select" data-lang="uk" href="javascript:void(0)">
+                <span class="fi fi-ua"></span>
+                Українська
+            </a>
+        </div>
+    </li>
+    <li class="navbar__item">
+        <a href="javascript:void(0)" class="navbar__link navbar__link--dropdown-icon"><i class="bi bi-newspaper"></i>Our Social</a>
+        <div class="navbar__dropdown-content">
+            <a class="navbar__link" href="https://discord.gg/va8jt85Tev">
+                <i class="bi bi-discord"></i>
+                Discord
+            </a>
+            <a class="navbar__link" href="https://t.me/rebuildthegloballist">
+                <i class="bi bi-telegram"></i>
+                Telegram
+            </a>
+        </div>
+    </li>
+    
+        <li class="navbar__item">
+        <a class="navbar__link" href="signup.html"><i class="bi bi-rocket-takeoff"></i> Sign up</a>
+    </li>
+    <li class="navbar__item">
+        <a class="navbar__link" href="signin.html"><i class="bi bi-person"></i> Sign in</a>
+    </li></ul>        
+        <button class="scroll-to-top-btn">
+            <i class="bi bi-arrow-up"></i>
+        </button>
+        
+        <script>
+        
+        const scrollToTop = () => {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+        
+        const setupHTMLForSmoothScroll = () => {
+            $("html").css("scroll-behavior", "smooth");
+            
+            $(window).on("scroll", (e) => {
+                if (e.currentTarget.pageYOffset >= 500) {
+                    $(".scroll-to-top-btn").show("fast");
+                }
+                else {
+                    $(".scroll-to-top-btn").hide("fast");
+                }
+            })
+            
+            $(".scroll-to-top-btn").click(() => {
+                scrollToTop();
+            })
+        }
+        
+        addEventListener("DOMContentLoaded", (event) => {
+            setTimeout(() => {
+                setupHTMLForSmoothScroll();
+            }, 0);
+            
+        });
+        
+        </script>
+        
+        <style>
+            .scroll-to-top-btn {
+                display: none;
+                position: fixed;
+                right: 0px;
+                bottom: 0px;
+                margin-bottom: 15px;
+                margin-right: 15px;
+                border: 1px gray solid;
+                border-radius: 9px;
+                background-color: white;
+                color: black;
+                font-size: 14pt;
+                padding: 20px;
+                opacity: 0.5;
+                transition: 0.2s;
+            }
+            .scroll-to-top-btn:hover {
+                opacity: 1;
+            }
+        </style>
+        
+        
+<script src="npm/bootstrap%405.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+<script src="assets/js/token-logginer.js"></script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+{
+  "background_color": "#ffffff",
+  "description": "Demonlist - reliable top of hardest extreme demons in the game Geometry Dash filled by Russian moderators based on the various opinions of the best players! List of all rated and unrated hardest levels that have been passed by the players, list of the possible future levels, top of the most skillful players and countries!",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "Demonlist",
+  "orientation": "any",
+  "scope": "/",
+  "short_name": "demonlist",
+  "start_url": "/",
+  "theme_color": "#ffffff",
+  "categories": [],
+  "screenshots": [],
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "type": "image/x-icon"
+    }
+  ],
+  "shortcuts": []
+}

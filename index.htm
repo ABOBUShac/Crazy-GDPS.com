@@ -1,0 +1,673 @@
+﻿<!DOCTYPE html>
+<!-- Fix version build 2 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css?v=4">
+    <link rel="stylesheet" type="text/css" href="assets/css/toasts.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="gh/lipis/flag-icons%406.6.6/css/flag-icons.min.css">
+
+    <!--
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9G8THJPSFY"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-9G8THJPSFY');
+    </script>
+
+    <script type="text/javascript" >
+    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+    m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+    ym(89910388, "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true,
+            webvisor:true
+    });
+    </script>
+    
+    <noscript><div><img src="https://mc.yandex.ru/watch/89910388" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    -->
+
+</head>
+
+<body>
+    <script src="assets/libs/jquery.min.js"></script>
+
+    <!--<script src="/assets/js/languages/be.js"></script>
+    <script src="/assets/js/languages/pl.js"></script>-->
+    <script src="assets/js/languages/uk.js"></script>
+    <script src="assets/js/languages/ru.js"></script>
+    <script src="assets/js/translator.js?v=2"></script>
+    <script src="assets/js/toasts.js"></script>
+    
+    <script src="assets/libs/lazysizes.min.js"></script>
+    <script src="assets/libs/microplugin.min.js"></script>
+    <script src="assets/libs/sifter.min.js"></script>
+    <script src="assets/libs/selectize.min.js"></script>
+    <script src="assets/js/top_decorator.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script type="text/javascript" src="firebasejs/3.6.8/firebase.js"></script>
+    <script type="text/javascript" src="assets/js/pushes.js"></script>
+<style>
+    @import url('css2');
+
+
+</style>
+
+<meta name="description" content="Demonlist - reliable top of hardest extreme demons in the game Geometry Dash filled by Russian moderators based on the various opinions of the best players! List of all rated and unrated hardest levels that have been passed by the players, list of the possible future levels, top of the most skillful players and countries!">
+<title>Main List | Demonlist</title>
+<div class="penumbra"></div>
+
+<style>
+    @media screen and (max-width: 600px) {
+        img.level-tag{
+            width: 70px;
+            margin: 0 10px;
+        }
+        .push-add-level__window{
+            left: calc(50% - 175px);
+            width: 350px;
+            top: 70px;
+        }
+    }
+
+    @media screen and (min-width: 600px) {
+        img.level-tag{
+            width: 100px;
+            margin: 0 10px;
+        }
+        .push-add-level__window{
+            left: calc(50% - 225px);
+            width: 450px;
+            top: 100px;
+        }
+    }
+
+    body {
+        background-image: url('assets/img/backgrounds/main.png');
+    }
+
+    @media screen and (max-width: 600px) {
+        body {
+            background-image: url('assets/img/backgrounds/main-mobile.png');
+            background-position-x: center;
+            background-size: auto;
+        }
+    }
+
+    .normal-input {
+        width: 100%;
+    }
+
+    .level-panel__container {
+
+    }
+
+    .level-panel__name{
+        display: inline-flex;
+        align-items: center;
+    }
+
+    .push-add-level__window{
+        position: absolute;
+        z-index: 100;
+        min-height: 50px;
+        padding-bottom: 10px;
+        border-radius: 5px;
+
+        display: flex;
+        flex-direction: column;
+        pointer-events: none;
+
+        background: #f1f1f1;
+        border-top: 5px solid #888;
+        box-shadow: 3px 3px 20px rgba(0,0,0,0.75);
+        background-image: url('assets/img/panels/level-main.png');
+        opacity: 0;
+
+        font-family: "MADE Evolve Sans";
+        transition: ease 1s;
+    }
+
+    .push-add-level__title{
+        width: 100%;
+        height: 30px;
+    }
+
+    .push-add-level__close{
+        width: 30px;
+        height: 30px;
+        margin-left: auto;
+        margin-right: 0;
+    }
+</style>
+
+    <div class="demon-search">
+        <div class="up-row">
+            <button class="close-search-btn normal-input">
+                <i class="bi bi-arrow-90deg-left"></i>
+            </button>
+            <form class="searcher">
+                <input class="normal-input" id="demon_name_input" name="demon_name" type="text" placeholder="Search a level">
+            </form>
+            
+        </div>
+            
+        <div class="demons-search-container">
+        </div>
+        
+    </div>
+    
+    <script>
+    
+    const clamp = (num, min, max) => Math.min(Math.max(num, min), max);
+    
+    const getDemonResultComponent = (data, fadeTime) => {
+            return `
+            <a href="/mainlist/${data.level_id}">
+            <div class="demon-result" style="animation-duration: ${fadeTime}s">
+                <? echo $this->type == "main" ? "#\${data.place} - " : "" ?>${data.name}<br />
+                <sub>${data.holder}</sub>
+            </div>
+            </a>`;
+    }
+    
+    const constructDemonResultList = (list) => {
+        $('.demons-search-container').html("");
+        list.forEach((demon, index) => {
+            $('.demons-search-container').append(
+                getDemonResultComponent(demon, clamp(index * 0.15, 0.1, 0.7))
+            );
+        });
+    }
+    
+    const searchInList = async(s) => {
+        const response = await fetch("/api/list_main/?s="+s, {
+            method: "GET",
+            credentials: "same-origin",
+            headers: {
+                "Content-Type": "text/plain;charset=UTF-8"
+            },
+            
+        });
+        const jsonData = await response.json();
+        return jsonData;
+    }
+    
+    const processSearchInput = async(e) => {
+        const demonName = e.currentTarget.value;
+        
+        if (demonName.length == 0) return constructDemonResultList([]);
+        
+        const result = await searchInList(demonName);
+        constructDemonResultList(result);
+        
+        console.log(result);
+    }
+    
+    $('#demon_name_input').on('input', function(e){
+        processSearchInput(e);
+    });
+    
+    $('.searcher').submit((e) => {
+        e.preventDefault();
+    })
+    
+    addEventListener("DOMContentLoaded", (event) => {
+        
+        $('.close-search-btn, .search-btn').click(() => {
+            $('.demon-search').toggleClass("active");
+            
+            if ($('.demon-search.active').length === 1) {
+                
+                document.querySelector('#demon_name_input').value = '';
+                constructDemonResultList([]);
+                
+                if ($(".header--mobile.active").length === 1) {
+                    toggleMobileMenu();
+                }
+                $('#demon_name_input').focus();
+            }
+        })
+        
+    });
+        
+    $('.demon-search').on("keyup", (e) => {
+        if (e.keyCode === 27)
+            $('.demon-search').toggleClass("active");
+    })
+        
+        
+    </script>
+    
+    <style>
+    
+    @keyframes fadeInDemon {
+        from {opacity: 0.0;}
+        to {opacity: 1;}
+    }
+    
+    .demon-search {
+        z-index: 600;
+    }
+    
+    .alittlemargin {
+        margin-right: 10px;
+    }
+    
+    .demon-result sub {
+        font-size: 11pt;
+    }
+    
+    .demons-search-container a {
+        color: black;
+        text-decoration: none;
+        align-self: center;
+        width: 90%;
+    }
+    
+    .demons-search-container {
+        margin-top: 10px;  
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+    
+    .demon-result {
+        width: 100%;
+        padding: 15px;
+        background-color: white;
+        border-radius: 9px;
+        color: black;
+        font-size: 15pt;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        align-self: center;
+        animation-name: fadeInDemon;
+    }
+    
+    .searcher input {
+        height: 100%;
+        margin-left: 10px;
+        padding: 5px;
+        padding-left: 10px;
+        padding-right: 10px;
+        width: 300px;
+    }
+    
+    .close-search-btn {
+        width: 50px;
+        height: 50px;
+    }
+    
+    
+    .up-row {
+        display: flex;
+        align-items: middle;
+        flex-direction: row;
+        justify-content: center;
+        margin-top: 60px;
+    }
+    
+    .demon-search {
+        display: flex;
+        position: fixed;
+        left: 0px;
+        right: 0px;
+        top: 0px;
+        bottom: 0px;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        opacity: 0.0;
+        transition: 0.5s;
+        background-color: rgba(0, 0, 0, 0.5);
+        padding: 10px;
+        flex-direction: column;
+        overflow-y: hidden;
+    }
+    
+    .demon-search.active {
+        pointer-events: all;
+        opacity: 1.0;
+        overflow-y: auto;
+    }
+    
+    .normal-input {
+        padding: 8px;
+        font-size: 14pt;
+        background-color: white;
+        border: none;
+        border-radius: 9px;
+    }
+    
+    </style>
+    
+    
+<div class="push-add-level__window" id="push-add-level">
+    <div class="level-info__verifier" style="font-size: 20pt;">
+        <span class="push-add-level__title"> Didn't find the level? </span>
+        <!-- <span class="push-add-level__close" onclick="hidePushAddLevel()" style="color: gray; cursor: pointer;"> ✖ </span> -->
+    </div>
+    <div class="level-info__value" style="text-align: center;">
+        You can suggest a level <a href="level_submit.html" style="color: #246F9A;">here</a>
+        <br><br>
+        <span style="color: #246F9A; cursor: pointer; line-height: 25px; margin-top: 6px;">
+    		<span onclick="hidePushAddLevel()"> <i class="bi bi-x"></i> Remind me later </span>
+    		<span style="margin-left:20px;"></span>
+    		<span onclick="dontShowPush()"> <i class="bi bi-volume-mute"></i> Don't show anymore </span>
+		</span>
+    </div>
+</div>
+
+<script>
+
+    globalThis.initialTop = [{"place":1,"name":"Tidal Wave","level_id":"86407629","verifier":"Zoink","creator":"OniLink","holder":"OniLinkGD","video":"https:\/\/youtu.be\/9fsZ014qB3s","score":1000,"minimal_percent":56,"preview":"86407629.jpg","db_id":1034},{"place":2,"name":"Acheron","level_id":"73667628","verifier":"Zoink","creator":"Riot, Ryamu and more","holder":"ryamu","video":"https:\/\/youtu.be\/sBKR6aUorzA","score":960,"minimal_percent":51,"preview":"73667628.jpg","db_id":1},{"place":3,"name":"Avernus","level_id":"89496627","verifier":"Zoink","creator":"Bo and more","holder":"PockeWindfish","video":"https:\/\/youtu.be\/16Zh8jssanc","score":920,"minimal_percent":48,"preview":"89496627.jpg","db_id":2},{"place":4,"name":"Silent clubstep","level_id":"4125776","verifier":"zoe","creator":"TheRealSailent","holder":"TheRealSailent","video":"https:\/\/youtu.be\/GR4OMkS3SN8","score":880,"minimal_percent":34,"preview":"4125776.jpg","db_id":3},{"place":5,"name":"Abyss of Darkness","level_id":"49896559","verifier":"Cursed","creator":"Exen and more","holder":"Exen","video":"https:\/\/youtu.be\/ejJkpqcMMCY","score":840,"minimal_percent":53,"preview":"ejJkpqcMMCY.jpg","db_id":4},{"place":6,"name":"Kyouki","level_id":"86018142","verifier":"Demishio","creator":"Demishio","holder":"Demishio","video":"https:\/\/youtu.be\/KDa5c0CJTHs","score":800,"minimal_percent":49,"preview":"86018142.png","db_id":5},{"place":7,"name":"Sakupen Circles","level_id":"76962930","verifier":"Diamond","creator":"DrCuber and more","holder":"TDiamond","video":"https:\/\/youtu.be\/ofG2mJi9kEA","score":760,"minimal_percent":59,"preview":"ofG2mJi9kEA.jpg","db_id":6},{"place":8,"name":"Slaughterhouse","level_id":"27690100","verifier":"Doggie","creator":"icedcave and more","holder":"IcEDCave","video":"https:\/\/youtu.be\/kpcF1-QAHQc","score":720,"minimal_percent":58,"preview":"pKzzz6LQfUk.jpg","db_id":7},{"place":9,"name":"Firework","level_id":"75206202","verifier":"Trick","creator":"Vernam and more","holder":"TrickGMD","video":"https:\/\/youtu.be\/QBe5x2o9v2w","score":660,"minimal_percent":55,"preview":"QBe5x2o9v2w.jpg","db_id":9},{"place":10,"name":"ETERNALtheory","level_id":"92196326","verifier":"Hyperlith","creator":"Hyperlith","holder":"Hyperlith","video":"https:\/\/youtu.be\/3LfjQWk9Hyg","score":600,"minimal_percent":61,"preview":"92196326.jpg","db_id":1001},{"place":11,"name":"KOCMOC","level_id":"87665224","verifier":"Zoink","creator":"Vernam, Sauzzeth","holder":"cherryteam","video":"https:\/\/youtu.be\/2CxE-UWCIG4","score":580,"minimal_percent":40,"preview":"87665224.png","db_id":969},{"place":12,"name":"Deim\u043es","level_id":"93091893","verifier":"Doggie","creator":"ItzHybrid and more","holder":"ItsHybrid","video":"https:\/\/youtu.be\/b2yHaIk5zio","score":560,"minimal_percent":56,"preview":"93091893.png","db_id":1020},{"place":13,"name":"COMBUSTION","level_id":"94359172","verifier":"Slithium","creator":"Cersia and Slithium","holder":"Cersia","video":"https:\/\/youtu.be\/3cTR4XUcA28","score":540,"minimal_percent":60,"preview":"94359172.jpg","db_id":1056},{"place":14,"name":"MINUSdry","level_id":"89414220","verifier":"Varium","creator":"CDMusic and Sevant","holder":"CDMusic","video":"https:\/\/youtu.be\/YvA8ehhzz0Q","score":520,"minimal_percent":49,"preview":"89414220.jpg","db_id":10},{"place":15,"name":"The Lightning Rod","level_id":"93917076","verifier":"Lavatrex","creator":"Lavatrex","holder":"Lavatrex","video":"https:\/\/youtu.be\/nQDTi077O6M","score":500,"minimal_percent":55,"preview":"93917076.jpg","db_id":1055},{"place":16,"name":"Through The Gates","level_id":"49072489","verifier":"Zoink","creator":"TeamTheDashers","holder":"TeamTheDashers","video":"https:\/\/youtu.be\/4yHA6jux5UI?si=FQswN3TE3K89ZukJ","score":480,"minimal_percent":74,"preview":"49072489.jpg","db_id":1072},{"place":17,"name":"poocubed","level_id":"85133223","verifier":"Kyasshukodo","creator":"Lisp and more","holder":"btLisp","video":"https:\/\/youtu.be\/fzL31vai1ms","score":460,"minimal_percent":49,"preview":"85133223.png","db_id":13},{"place":18,"name":"Stellar Night","level_id":"83244159","verifier":"Tuggy","creator":"icedcave","holder":"IcEDCave","video":"https:\/\/youtu.be\/XpBY-eMYZTE","score":440,"minimal_percent":57,"preview":"83244159.jpg","db_id":14},{"place":19,"name":"Eyes in the Water","level_id":"95851008","verifier":"LordVadercraft","creator":"hawkyre &amp; More","holder":"nothawkyre","video":"https:\/\/youtu.be\/yvLwiOy3KEA?si=G7bYhDWtpcRV0OmK","score":420,"minimal_percent":51,"preview":"95851008.jpg","db_id":1074},{"place":20,"name":"LIMBO","level_id":"86084399","verifier":"BUNNYGRAM","creator":"MindCap and more","holder":"MindCap","video":"https:\/\/youtu.be\/kXYMbaMVOZg","score":400,"minimal_percent":52,"preview":"86084399.png","db_id":11},{"place":21,"name":"Decks Dark","level_id":"95719795","verifier":"Whizkid05","creator":"zYuko","holder":"zYuko","video":"https:\/\/youtu.be\/l52ApE4HWkY?si=z4AGb8eUmF_sXJWN","score":396,"minimal_percent":67,"preview":"95719795.jpg","db_id":1198},{"place":22,"name":"Saul Goodman","level_id":"90477539","verifier":"Jori","creator":"Renn241 and more","holder":"Renn241","video":"https:\/\/youtu.be\/hjs5PjUaw9k","score":392,"minimal_percent":54,"preview":"90477539.jpg","db_id":727},{"place":23,"name":"The Hallucination","level_id":"81139702","verifier":"VoTcHi","creator":"VoTcHi and SyQual","holder":"SyQual","video":"https:\/\/youtu.be\/tYbXsNkO9HE","score":388,"minimal_percent":45,"preview":"tYbXsNkO9HE.jpg","db_id":18},{"place":24,"name":"Tunnel of Despair","level_id":"91351939","verifier":"Zoink","creator":"Exen and ImMaxX1","holder":"Exen","video":"https:\/\/youtu.be\/LpS4JREhW98","score":384,"minimal_percent":63,"preview":"91351939.jpg","db_id":1002},{"place":25,"name":"SARYYX NEVER CLEAR","level_id":"95998005","verifier":"skzyl","creator":"artos and more","holder":"aartos","video":"https:\/\/youtu.be\/rRlyvmjcz_4?si=LZn-Uhdr2YVISRwy","score":380,"minimal_percent":50,"preview":"95998005.jpg","db_id":1085},{"place":26,"name":"Deadlier Clubstep","level_id":"96314787","verifier":"Jenath","creator":"Realvet and more","holder":"herozombie80","video":"https:\/\/youtu.be\/eRhgaF0r5Q0?si=zbsWibKLmww6y4pf","score":376,"minimal_percent":100,"preview":"96314787.jpg","db_id":1168},{"place":27,"name":"Diabolic Clubstep","level_id":"73214186","verifier":"Sevant","creator":"Sevant","holder":"Sevant","video":"https:\/\/youtu.be\/BN7DxkMaQfg","score":372,"minimal_percent":56,"preview":"BN7DxkMaQfg.jpg","db_id":16},{"place":28,"name":"Mayhem","level_id":"82544060","verifier":"LordVadercraft","creator":"Vernam and more","holder":"LordVadercraft","video":"https:\/\/youtu.be\/U6e6DD32noM","score":368,"minimal_percent":39,"preview":"82544060.jpg","db_id":22},{"place":29,"name":"Oblivion","level_id":"71025973","verifier":"Dice88","creator":"benji8080 and more","holder":"dice88","video":"https:\/\/youtu.be\/ZcmDAm50BB0","score":364,"minimal_percent":50,"preview":"ZcmDAm50BB0.jpg","db_id":17},{"place":30,"name":"Edge of Destiny","level_id":"89187968","verifier":"polterghast","creator":"CDmusic and more","holder":"CDMusic","video":"https:\/\/youtu.be\/rUphe3H59yU","score":360,"minimal_percent":56,"preview":"89187968.png","db_id":19},{"place":31,"name":"The Wonder of You","level_id":"94858072","verifier":"Helix","creator":"HangerLord and more","holder":"HangerLord","video":"https:\/\/youtu.be\/iQ3RzYCvLvA?si=Auv_wk0iZL55yyeN","score":356,"minimal_percent":55,"preview":"94858072.jpg","db_id":1064},{"place":32,"name":"Cimmerian Shade","level_id":"93340783","verifier":"spcreat","creator":"SrGuillester and AZuLer4","holder":"spcreat","video":"https:\/\/youtu.be\/lUNvV1k19HA","score":352,"minimal_percent":57,"preview":"93340783.jpg","db_id":1035},{"place":33,"name":"Solar Flare","level_id":"90390075","verifier":"swiborg","creator":"Linear and rynoxious","holder":"Linear2","video":"https:\/\/youtu.be\/eHQNgty8ypY","score":348,"minimal_percent":48,"preview":"90390075.jpg","db_id":970},{"place":34,"name":"Hard Machine","level_id":"72744364","verifier":"Varium","creator":"nikroplays, viri and Komp","holder":"komp","video":"https:\/\/youtu.be\/6i0pdTDAo1c","score":344,"minimal_percent":56,"preview":"6i0pdTDAo1c.jpg","db_id":21},{"place":35,"name":"Sinister Silence","level_id":"82249742","verifier":"wwdonut","creator":"Wahffle and more","holder":"Wahffle","video":"https:\/\/youtu.be\/6N8u_byYoZo","score":340,"minimal_percent":53,"preview":"82249742.jpg","db_id":33},{"place":36,"name":"UNKNOWN","level_id":"88203501","verifier":"Diamond","creator":"NineDice","holder":"NineDice","video":"https:\/\/youtu.be\/a1sQxQqU6EM","score":336,"minimal_percent":61,"preview":"88203501.png","db_id":20},{"place":37,"name":"Tartarus","level_id":"59075347","verifier":"Dolphy","creator":"Riot and more","holder":"ItzDolphy","video":"https:\/\/youtu.be\/9YYQBbrsV5Y","score":332,"minimal_percent":47,"preview":"9YYQBbrsV5Y.jpg","db_id":23},{"place":38,"name":"walter white","level_id":"81011195","verifier":"iIiLaSeRiIi","creator":"Renn241 and GhostVandalf","holder":"Renn241","video":"https:\/\/youtu.be\/KzK62PkWOJ0","score":328,"minimal_percent":57,"preview":"81011195.jpg","db_id":27},{"place":39,"name":"arcturus","level_id":"72315402","verifier":"ultracauaHD","creator":"Maxfs","holder":"Maxfs","video":"https:\/\/youtu.be\/a_Bqa8l9Xtc","score":324,"minimal_percent":45,"preview":"72315402.jpg","db_id":15},{"place":40,"name":"THE ROCK HOUSE","level_id":"83828637","verifier":"Dragoon","creator":"plaenterprise","holder":"pla","video":"https:\/\/youtu.be\/A76WxInuqos","score":320,"minimal_percent":53,"preview":"83828637.jpg","db_id":42},{"place":41,"name":"Trueffet","level_id":"71434979","verifier":"Baeru","creator":"SyQual and Rainstorm","holder":"SyQual","video":"https:\/\/youtu.be\/yHESkazVD4Q","score":316,"minimal_percent":53,"preview":"71434979.jpg","db_id":26},{"place":42,"name":"Jigsaw","level_id":"95031870","verifier":"Gokill","creator":"NEKONGAMES","holder":"NEKONGAMES","video":"https:\/\/youtu.be\/FPfSqlI0T30","score":312,"minimal_percent":45,"preview":"95031870.jpg","db_id":1063},{"place":43,"name":"Enjoy","level_id":"78004719","verifier":"Hipo","creator":"SeptaGon7","holder":"SeptaGon7","video":"https:\/\/youtu.be\/eo0o8YNiVSc","score":308,"minimal_percent":59,"preview":"78004719.jpg","db_id":29},{"place":44,"name":"Sonic Wave Infinity","level_id":"69685815","verifier":"Xanii","creator":"Zimnior12 and more","holder":"APTeamOfficial","video":"https:\/\/youtu.be\/C3-l_fFikpQ","score":304,"minimal_percent":54,"preview":"C3-l_fFikpQ.jpg","db_id":25},{"place":45,"name":"The Golden","level_id":"60978746","verifier":"nSwish","creator":"Bo and more","holder":"BoBoBoBoBoBoBo","video":"https:\/\/youtu.be\/Aas8_QKLnuc","score":300,"minimal_percent":50,"preview":"Aas8_QKLnuc.jpg","db_id":28},{"place":46,"name":"Verdant Landscape","level_id":"76543324","verifier":"Nisha","creator":"Nisha","holder":"ItzNisha","video":"https:\/\/youtu.be\/wjZxkS5KC0A","score":296,"minimal_percent":44,"preview":"wjZxkS5KC0A.jpg","db_id":30},{"place":47,"name":"Cannon Bay","level_id":"83403926","verifier":"LordVadercraft","creator":"Vernam and more","holder":"LordVadercraft","video":"https:\/\/youtu.be\/UBXN6H4zck4","score":292,"minimal_percent":55,"preview":"aYVZf70stwE.jpg","db_id":31},{"place":48,"name":"The Nautical","level_id":"68567516","verifier":"Timo","creator":"Nayf and more","holder":"nayf","video":"https:\/\/youtu.be\/xDKFca4HMDk","score":288,"minimal_percent":48,"preview":"68567516.jpg","db_id":32},{"place":49,"name":"Shukketsu","level_id":"75286957","verifier":"Baeru","creator":"Yuko and more","holder":"zYuko","video":"https:\/\/youtu.be\/nkG4hKJIz2g","score":284,"minimal_percent":45,"preview":"nkG4hKJIz2g.jpg","db_id":39},{"place":50,"name":"Midnight","level_id":"96083028","verifier":"nei","creator":"by Yuko","holder":"zYuko","video":"https:\/\/youtu.be\/NhkN_a9cNi8?si=zn0VQkdDxDVyuod_","score":280,"minimal_percent":51,"preview":"96083028.jpg","db_id":1113},{"place":51,"name":"Damascus","level_id":"93339534","verifier":"Timo","creator":"Dzeser","holder":"Dzeser","video":"https:\/\/youtu.be\/MWQyCUGt76Y","score":272,"minimal_percent":55,"preview":"93339534.jpg","db_id":1033},{"place":52,"name":"Delta","level_id":"93917362","verifier":"Doggie","creator":"Drakosa, ArtsiBurn and more","holder":"Drakosa","video":"https:\/\/youtu.be\/_rr3J8DkIm4","score":264,"minimal_percent":58,"preview":"93917362.jpg","db_id":1057},{"place":53,"name":"Graceful","level_id":"71885708","verifier":"D a G","creator":"D a G and more","holder":"DaGYT","video":"https:\/\/youtu.be\/aUEiQXEYncc","score":256,"minimal_percent":50,"preview":"aUEiQXEYncc.jpg","db_id":34},{"place":54,"name":"Zodiac","level_id":"52374843","verifier":"Technical","creator":"Rustam and more","holder":"BIANOX","video":"https:\/\/youtu.be\/N4QjElo58_o","score":248,"minimal_percent":56,"preview":"N4QjElo58_o.jpg","db_id":35},{"place":55,"name":"NETWORK","level_id":"95176417","verifier":"vulcanium4","creator":"Agat3 and Amza","holder":"Agat3","video":"https:\/\/youtu.be\/K7wJi01J5D8?si=gDtVwXT2bTDLKtSE","score":240,"minimal_percent":55,"preview":"95176417.jpg","db_id":1073},{"place":56,"name":"Aerial Gleam","level_id":"79771070","verifier":"Doggie","creator":"Endlevel and more","holder":"EndLevel","video":"https:\/\/youtu.be\/eyZjKtrGVYw","score":232,"minimal_percent":53,"preview":"66s.jpg","db_id":36},{"place":57,"name":"Forsaken Hell","level_id":"67073198","verifier":"SpirteX","creator":"MatheDeath","holder":"MatheDeath","video":"https:\/\/youtu.be\/ZQsSRZpcWsY?si=Iz5CK2NxpmMmu7X4","score":224,"minimal_percent":54,"preview":"67073198.jpg","db_id":1052},{"place":58,"name":"Kenos","level_id":"58673581","verifier":"npesta","creator":"ChiefFlurry and more","holder":"npesta","video":"https:\/\/youtu.be\/Bs1kVySdUtI","score":216,"minimal_percent":53,"preview":"Bs1kVySdUtI.jpg","db_id":38},{"place":59,"name":"Keres","level_id":"74391640","verifier":"Crisis","creator":"ItsHybrid and more","holder":"ItsHybrid","video":"https:\/\/youtu.be\/MFFIjZP7PxQ","score":208,"minimal_percent":40,"preview":"MFFIjZP7PxQ.jpg","db_id":43},{"place":60,"name":"Time Lapse","level_id":"97705490","verifier":"Arshadow","creator":"Panya","holder":"LoveMohibFaisal","video":"https:\/\/youtu.be\/MnI1mM_wjzc?si=ykd8Opnu4xy5XC_R","score":200,"minimal_percent":58,"preview":"97705490.jpg","db_id":1167},{"place":61,"name":"Terminal Rampancy","level_id":"90057148","verifier":"ThunderBT","creator":"Xyriak","holder":"Xyriak","video":"https:\/\/youtu.be\/29hRhhqQTLc","score":192,"minimal_percent":59,"preview":"90057148.jpg","db_id":688},{"place":62,"name":"Critical Heat","level_id":"88442157","verifier":"hstorm","creator":"Zeus and Zeniux","holder":"Zeniux","video":"https:\/\/youtu.be\/UjYIt2jy_BY","score":184,"minimal_percent":56,"preview":"88442157.jpg","db_id":37},{"place":63,"name":"Crackhead Circles","level_id":"95524621","verifier":"teraaa","creator":"AlrexX","holder":"AlrexX","video":"https:\/\/youtu.be\/_4MDq8Us5gM?si=BVkhRcrWAy0Bn9BS","score":176,"minimal_percent":50,"preview":"95524621.jpg","db_id":1070},{"place":64,"name":"Amalgam","level_id":"95675702","verifier":"rWooshi","creator":"XLSpiral","holder":"XLSpiral","video":"https:\/\/youtu.be\/82DDR2BjXSI","score":168,"minimal_percent":51,"preview":"95675702.png","db_id":1069},{"place":65,"name":"Belladonna","level_id":"94969889","verifier":"exsii","creator":"Vernam &amp; itami","holder":"cherryteam","video":"https:\/\/youtu.be\/saHSgoU1JQQ?si=bwNdnIM1386bfPoH","score":160,"minimal_percent":55,"preview":"94969889.jpg","db_id":1111},{"place":66,"name":"NEUTRA","level_id":"88611404","verifier":"AeonAir","creator":"Jenkins and more","holder":"Jenkins","video":"https:\/\/youtu.be\/0fNBFwNS1qg","score":152,"minimal_percent":57,"preview":"88611404.jpg","db_id":40},{"place":67,"name":"Henken","level_id":"80714349","verifier":"Gokill","creator":"PLoLek and Yozyo","holder":"PLoLek","video":"https:\/\/youtu.be\/M--2oQKrV68","score":144,"minimal_percent":59,"preview":"M--2oQKrV68.jpg","db_id":41},{"place":68,"name":"Promethean","level_id":"69333212","verifier":"RicoLP","creator":"Endlevel and more","holder":"EndLevel","video":"https:\/\/youtu.be\/19kE_Yo8puE","score":136,"minimal_percent":73,"preview":"19kE_Yo8puE.jpg","db_id":44},{"place":69,"name":"Renevant","level_id":"58161496","verifier":"rori","creator":"nikroplays","holder":"nikroplays","video":"https:\/\/youtu.be\/2Y8kBw8YxO8","score":128,"minimal_percent":56,"preview":"58161496.jpg","db_id":45},{"place":70,"name":"Thinking Space","level_id":"54953085","verifier":"Atomic","creator":"HidekiX","holder":"Atomic","video":"https:\/\/youtu.be\/iHf2nanWjvE","score":120,"minimal_percent":76,"preview":"iHf2nanWjvE.jpg","db_id":46},{"place":71,"name":"Fragile","level_id":"65588448","verifier":"vaen","creator":"EndLevel and more","holder":"EndLevel","video":"https:\/\/youtu.be\/XfXzGv0oALw","score":112,"minimal_percent":47,"preview":"65588448.jpg","db_id":47},{"place":72,"name":"qoUEO","level_id":"81721025","verifier":"Franzy","creator":"GhostVandalf","holder":"GhostVandalf","video":"https:\/\/youtu.be\/PJbfroH0sok","score":104,"minimal_percent":27,"preview":"81721025.jpg","db_id":48},{"place":73,"name":"SARY NEVER CLEAR","level_id":"33498127","verifier":"Spamdrew128","creator":"KugelBlitz and more","holder":"IIKugelBlitZII","video":"https:\/\/youtu.be\/23u3SlwrOMw","score":96,"minimal_percent":69,"preview":"23u3SlwrOMw.jpg","db_id":49},{"place":74,"name":"SUPERHATEMEWORLD","level_id":"57571983","verifier":"Cursed","creator":"IcEDCave and more","holder":"IcEDCave","video":"https:\/\/youtu.be\/fhmgZYCJ29M","score":88,"minimal_percent":59,"preview":"57571983.jpg","db_id":50},{"place":75,"name":"Esfera","level_id":"78435955","verifier":"Baeru","creator":"SyQual, KeiAs and more","holder":"SyQual","video":"https:\/\/youtu.be\/GK0Z8rgziH4","score":80,"minimal_percent":61,"preview":"78435955.jpg","db_id":51},{"place":76,"name":"shimmer","level_id":"94156085","verifier":"Amplitron","creator":"Amplitron","holder":"amplitron","video":"https:\/\/youtu.be\/J89j-_l7ezg","score":79,"minimal_percent":55,"preview":"94156085.jpg","db_id":1058},{"place":77,"name":"Spectrolux","level_id":"89152371","verifier":"fusion425","creator":"HangerLord","holder":"HangerLord","video":"https:\/\/youtu.be\/U4fEgFtEnfI","score":78,"minimal_percent":53,"preview":"89152371.jpg","db_id":1054},{"place":78,"name":"Lotus Flower","level_id":"75813671","verifier":"BrianTheBurger","creator":"StarkyTheSalad and zzzgecko","holder":"StarkyTheSalad","video":"https:\/\/youtu.be\/pTgOHcwJhd0","score":77,"minimal_percent":63,"preview":"pTgOHcwJhd0.jpg","db_id":52},{"place":79,"name":"Haunted Corridor","level_id":"75638264","verifier":"fusion425","creator":"Farva and more","holder":"Farva","video":"https:\/\/youtu.be\/mvroqJQBvCo","score":76,"minimal_percent":51,"preview":"sfbxSiOWZQI.jpg","db_id":75},{"place":80,"name":"Sky Shredder","level_id":"88136707","verifier":"Dorvict","creator":"Dorvict","holder":"Dorvict","video":"https:\/\/youtu.be\/Z-69-4RKRgk","score":75,"minimal_percent":50,"preview":"88136707.jpg","db_id":1048},{"place":81,"name":"Crimson Planet","level_id":"45866767","verifier":"rWooshi","creator":"TrueOmega and more","holder":"TrueOmega","video":"https:\/\/youtu.be\/euMInLjyG6k","score":74,"minimal_percent":44,"preview":"euMInLjyG6k.jpg","db_id":53},{"place":82,"name":"Trotil","level_id":"94578424","verifier":"ItzTayfun","creator":"Eiriley and more","holder":"cherryteam","video":"https:\/\/youtu.be\/kblnO7LfQn4","score":73,"minimal_percent":55,"preview":"94578424.jpg","db_id":1049},{"place":83,"name":"Calculator Core","level_id":"58355141","verifier":"crazen","creator":"Walroose and more","holder":"Walroose","video":"https:\/\/youtu.be\/1B1b5EvaIw8","score":72,"minimal_percent":48,"preview":"1B1b5EvaIw8.jpg","db_id":54},{"place":84,"name":"Frost Spirit","level_id":"95767653","verifier":"Varium","creator":"Quaybus and more","holder":"Quaybus","video":"https:\/\/youtu.be\/c4cIFs7d63c?si=ctOuj1o2Y3vqA29V","score":71,"minimal_percent":55,"preview":"95767653.jpg","db_id":1075},{"place":85,"name":"Void of Thought","level_id":"76798772","verifier":"Victurkey","creator":"HidekiX and more","holder":"WalGhani","video":"https:\/\/youtu.be\/jtcTIK0fK1M","score":70,"minimal_percent":63,"preview":"jtcTIK0fK1M.png","db_id":55},{"place":86,"name":"Cold Sweat","level_id":"63996127","verifier":"Kapinapi","creator":"Sminx, Wulzy and para","holder":"para","video":"https:\/\/youtu.be\/tBpEPXGhQug","score":69,"minimal_percent":61,"preview":"tBpEPXGhQug.jpg","db_id":57},{"place":87,"name":"Cognition","level_id":"57600307","verifier":"nSwish","creator":"Endlevel and benji8080","holder":"EndLevel","video":"https:\/\/youtu.be\/ih6Z1z0E5D4","score":68,"minimal_percent":53,"preview":"ih6Z1z0E5D4.jpg","db_id":58},{"place":88,"name":"Widestep","level_id":"69289606","verifier":"Demishio","creator":"Demishio","holder":"Demishio","video":"https:\/\/youtu.be\/TN8fHN_XV3o","score":67,"minimal_percent":61,"preview":"69289606.jpg","db_id":974},{"place":89,"name":"TORN","level_id":"91816388","verifier":"Slijee","creator":"Kyhros and more","holder":"Kyhros","video":"https:\/\/youtu.be\/QUpzux7AoTI","score":66,"minimal_percent":52,"preview":"91816388.jpg","db_id":1014},{"place":90,"name":"Lucid Nightmares","level_id":"52310333","verifier":"rWooshi","creator":"DonutTV and CairoX","holder":"CairoX","video":"https:\/\/youtu.be\/G7hBE5qWx6M","score":65,"minimal_percent":50,"preview":"G7hBE5qWx6M.jpg","db_id":60},{"place":91,"name":"RUST","level_id":"71912451","verifier":"Keir","creator":"neigefeu","holder":"neigefeu","video":"https:\/\/youtu.be\/mEXGlrNMyR4","score":64,"minimal_percent":51,"preview":"mEXGlrNMyR4.jpg","db_id":61},{"place":92,"name":"Instinct","level_id":"94043690","verifier":"Blitzer","creator":"KrmaL and more","holder":"Krazyman50Real","video":"https:\/\/youtu.be\/6W3Gvi9ft0w","score":63,"minimal_percent":55,"preview":"94043690.jpg","db_id":1059},{"place":93,"name":"Silent Club","level_id":"68600127","verifier":"Luqualizer","creator":"Play 1107696","holder":"Luqualizer","video":"https:\/\/youtu.be\/NjEiHIokTGM","score":62,"minimal_percent":52,"preview":"NjEiHIokTGM.jpg","db_id":62},{"place":94,"name":"FACESHOPPING","level_id":"82139734","verifier":"WatchPiggy","creator":"Skyyee","holder":"Skyyee","video":"https:\/\/youtu.be\/Lyre-ZkGfLQ","score":61,"minimal_percent":54,"preview":"82139734.jpg","db_id":63},{"place":95,"name":"Cobwebs","level_id":"82172844","verifier":"Cursed","creator":"NineDice and Taika","holder":"NineDice","video":"https:\/\/youtu.be\/iEznd6B-uig","score":60,"minimal_percent":53,"preview":"82172844.png","db_id":59},{"place":96,"name":"Cosmic Cyclone","level_id":"76159410","verifier":"DoSh7t","creator":"Zimnior12 and more","holder":"APTeamOfficial","video":"https:\/\/youtu.be\/0I9xCfTOpXg","score":59,"minimal_percent":66,"preview":"0I9xCfTOpXg.jpg","db_id":64},{"place":97,"name":"Jupiter My Favourite","level_id":"92466083","verifier":"LuigiDB","creator":"Akunakunn","holder":"Akunakunn","video":"https:\/\/youtu.be\/nHdEUIPpS2k","score":58,"minimal_percent":100,"preview":"92466083.png","db_id":1068},{"place":98,"name":"CONNECT","level_id":"95089240","verifier":"mac","creator":"by MCres","holder":"MCres","video":"https:\/\/youtu.be\/oo_PqnEHZvo?si=Sfhe7BQ1IJsdJokf","score":57,"minimal_percent":48,"preview":"95089240.jpg","db_id":1115},{"place":99,"name":"Scream Machine","level_id":"96035641","verifier":"WatchPiggy","creator":"TMco, HelpegasuS &amp; more","holder":"TMco","video":"https:\/\/youtu.be\/n-KeSGEX7Jg?si=56Atsy0TvYT6YX_-","score":56,"minimal_percent":44,"preview":"96035641.jpg","db_id":1110},{"place":100,"name":"Ringy Paracosm","level_id":"78745224","verifier":"SpeedyMuffin","creator":"GDNachoo","holder":"GDNachoo","video":"https:\/\/youtu.be\/RIDuh4IVGiw","score":55,"minimal_percent":58,"preview":"RIDuh4IVGiw.jpg","db_id":65},{"place":101,"name":"DIRECTIONS","level_id":"88233955","verifier":"SwordBx","creator":"ryli06","holder":"ryli06","video":"https:\/\/youtu.be\/-SEgSgxpRxo","score":54,"minimal_percent":47,"preview":"88233955.jpg","db_id":66},{"place":102,"name":"Shardscapes","level_id":"79997992","verifier":"kiseta","creator":"Kiba","holder":"ItzKiba","video":"https:\/\/youtu.be\/prAX7gnKrkU","score":53,"minimal_percent":65,"preview":"prAX7gnKrkU.jpg","db_id":67},{"place":103,"name":"Villain Virus","level_id":"86180516","verifier":"Astrala","creator":"TheRealPeng and more","holder":"TheRealPeng","video":"https:\/\/youtu.be\/YSYDdlU1HnI","score":52,"minimal_percent":49,"preview":"86180516.png","db_id":1067},{"place":104,"name":"ATOMIC CANNON Mk II","level_id":"91180835","verifier":"Zeronium","creator":"Lieb","holder":"LIEB","video":"https:\/\/youtu.be\/4-lOnZsfhNQ","score":51,"minimal_percent":49,"preview":"91180835.jpg","db_id":996},{"place":105,"name":"Descent Into Exile","level_id":"77518059","verifier":"BUNNYGRAM","creator":"GrenadeofTacos and more","holder":"GrenadeofTacos","video":"https:\/\/youtu.be\/whtt_WkG_20","score":50,"minimal_percent":68,"preview":"whtt_WkG_20.jpg","db_id":68},{"place":106,"name":"ConClusion","level_id":"96471171","verifier":"BrowarKedawar","creator":"DreamZoneGD","holder":"DreamZoneGD","video":"https:\/\/youtu.be\/wpuPFFqnJFY?si=8w5Fqcdog9zFEmLc","score":49,"minimal_percent":52,"preview":"96471171.jpg","db_id":1166},{"place":107,"name":"Akashic Records","level_id":"58150142","verifier":"VoTcHi","creator":"Rainstorm and more","holder":"VoTcHi","video":"https:\/\/youtu.be\/qnZnV6q-mt4","score":48,"minimal_percent":62,"preview":"qnZnV6q-mt4.jpg","db_id":69},{"place":108,"name":"The Rupture","level_id":"57828784","verifier":"Dolphy","creator":"Ka1ns","holder":"Ka1ns","video":"https:\/\/youtu.be\/SaU454afkKY","score":47,"minimal_percent":50,"preview":"SaU454afkKY.jpg","db_id":71},{"place":109,"name":"-critical error-","level_id":"19761735","verifier":"SpeedyMuffin","creator":"Pringl3s","holder":"Yoyo24","video":"https:\/\/youtu.be\/18x88-2JIIY","score":46,"minimal_percent":65,"preview":"19761735.jpg","db_id":72},{"place":110,"name":"Launchpad Labyrinth","level_id":"85426437","verifier":"WSCKR","creator":"Moffe","holder":"Moffe","video":"https:\/\/youtu.be\/CfhbnDCOWHs","score":45,"minimal_percent":55,"preview":"85426437.jpg","db_id":73},{"place":111,"name":"Kappa","level_id":"59800588","verifier":"nSwish","creator":"Armadeus and more","holder":"Armadeus","video":"https:\/\/youtu.be\/4CTcUqgkOZo","score":44,"minimal_percent":50,"preview":"4CTcUqgkOZo.jpg","db_id":74},{"place":112,"name":"Azure Flare","level_id":"70384729","verifier":"Axinity","creator":"Endlevel","holder":"Axinity","video":"https:\/\/youtu.be\/RYhytCdOl-U","score":43,"minimal_percent":59,"preview":"RYhytCdOl-U.jpg","db_id":76},{"place":113,"name":"Avaddon","level_id":"81174074","verifier":"LordVadercraft","creator":"TheHolstein and more","holder":"ItzAkeno","video":"https:\/\/youtu.be\/JpzpA6FhD28","score":42,"minimal_percent":63,"preview":"JpzpA6FhD28.jpg","db_id":77},{"place":114,"name":"Escape Room","level_id":"90420966","verifier":"MiniShoey","creator":"SleyGD","holder":"SleyGD","video":"https:\/\/youtu.be\/2Z-7Yscs62c","score":41,"minimal_percent":60,"preview":"90420966.jpg","db_id":973},{"place":115,"name":"poocu","level_id":"75867791","verifier":"Baeru","creator":"Lisp and more","holder":"btLisp","video":"https:\/\/youtu.be\/6n3419JUP1M","score":40,"minimal_percent":57,"preview":"6n3419JUP1M.jpg","db_id":78},{"place":116,"name":"Congregation","level_id":"68668045","verifier":"Floofle","creator":"Presta","holder":"Presta","video":"https:\/\/youtu.be\/KVlcdvGYcj0","score":39,"minimal_percent":51,"preview":"KVlcdvGYcj0.jpg","db_id":79},{"place":117,"name":"Climax","level_id":"95049815","verifier":"Wain","creator":"hushlc &amp; Wain","holder":"HushLC","video":"https:\/\/youtu.be\/E4ppq2WeAAs?si=3nj0gQFQSzDboRtN","score":38,"minimal_percent":48,"preview":"95049815.jpg","db_id":1071},{"place":118,"name":"Jesse Pinkman","level_id":"79918576","verifier":"Comlayze","creator":"Renn241","holder":"Renn241","video":"https:\/\/youtu.be\/fYcBtp4X8GA","score":37,"minimal_percent":59,"preview":"79918576.jpg","db_id":80},{"place":119,"name":"Bloodlust","level_id":"42584142","verifier":"knobbelboy","creator":"knobbelboy and more","holder":"Knobbelboy","video":"https:\/\/youtu.be\/5SzKetF2btw","score":36,"minimal_percent":56,"preview":"5SzKetF2btw.jpg","db_id":81},{"place":120,"name":"Stormy Earthscape","level_id":"92539829","verifier":"DraxitIII","creator":"GammaReXx","holder":"GammaReXx","video":"https:\/\/youtu.be\/IKOJS6r1L9U","score":35,"minimal_percent":58,"preview":"92539829.png","db_id":1007},{"place":121,"name":"Fog","level_id":"90853661","verifier":"Slayer","creator":"Notesxd, Slayer and Pixll","holder":"Notesxd","video":"https:\/\/www.youtube.com\/watch?v=n3dIaFHT-fI","score":34,"minimal_percent":55,"preview":"90853661.jpg","db_id":979},{"place":122,"name":"Jasmine","level_id":"91558130","verifier":"Zeronium","creator":"zYuko","holder":"zYuko","video":"https:\/\/youtu.be\/WFu5H7yi9hA","score":33,"minimal_percent":100,"preview":"91558130.png","db_id":1066},{"place":123,"name":"Call Me Maybe","level_id":"80178903","verifier":"LordVadercraft","creator":"Hawkyre and more","holder":"nothawkyre","video":"https:\/\/youtu.be\/Jc-98ND5OJk","score":32,"minimal_percent":62,"preview":"Jc-98ND5OJk.jpg","db_id":82},{"place":124,"name":"Sazerix","level_id":"86787878","verifier":"Skycrab","creator":"Zeptrus","holder":"Zeptrus","video":"https:\/\/youtu.be\/l8aBStUgYOs","score":31,"minimal_percent":52,"preview":"86787878.jpg","db_id":83},{"place":125,"name":"Ragnarok","level_id":"55624478","verifier":"Technical","creator":"knobbelboy and more","holder":"Knobbelboy","video":"https:\/\/youtu.be\/aGtXqn9HL2o","score":30,"minimal_percent":51,"preview":"aGtXqn9HL2o.jpg","db_id":84},{"place":126,"name":"Asterios","level_id":"60870688","verifier":"Atomic","creator":"Exen and more","holder":"Exen","video":"https:\/\/youtu.be\/YG3taML8WjA","score":29,"minimal_percent":53,"preview":"YG3taML8WjA.jpg","db_id":85},{"place":127,"name":"Th3Dev0n","level_id":"95929957","verifier":"Zeostar","creator":"by Zeptoz","holder":"Zeptoz","video":"https:\/\/youtu.be\/f7s6i0M1n-g?si=WUud0e26udBewI-T","score":28,"minimal_percent":49,"preview":"95929957.jpg","db_id":1114},{"place":128,"name":"Omega Interface","level_id":"68654380","verifier":"RG","creator":"Platnuu and Zipixbox","holder":"Platnuu","video":"https:\/\/youtu.be\/sVngEgj0who","score":27,"minimal_percent":60,"preview":"sVngEgj0who.jpg","db_id":86},{"place":129,"name":"The Art of the Blade","level_id":"82606722","verifier":"kyoto","creator":"mbed and more","holder":"mbed","video":"https:\/\/youtu.be\/KSJl4A9eUW4","score":26,"minimal_percent":74,"preview":"82606722.jpg","db_id":93},{"place":130,"name":"no jokes","level_id":"84507862","verifier":"Zeronium","creator":"Aqualime and more","holder":"theParadoxTeam","video":"https:\/\/youtu.be\/oVhGYiQ8fBc","score":25,"minimal_percent":68,"preview":"84507862.jpg","db_id":87},{"place":131,"name":"CITRA","level_id":"80966089","verifier":"VARSE","creator":"VARSE","holder":"varse","video":"https:\/\/youtu.be\/I8M1OOhub9w","score":24,"minimal_percent":72,"preview":"80966089.jpg","db_id":88},{"place":132,"name":"Gumi","level_id":"76857114","verifier":"Swooker","creator":"btLisp","holder":"btLisp","video":"https:\/\/youtu.be\/JPZsQGaocQM","score":23,"minimal_percent":56,"preview":"76857114.png","db_id":89},{"place":133,"name":"CORRODERE","level_id":"90597202","verifier":"Gzeee","creator":"Moosh and more","holder":"Moosh","video":"https:\/\/youtu.be\/-V87Bh44lAU","score":22,"minimal_percent":54,"preview":"90597202.png","db_id":1010},{"place":134,"name":"Knights of Thunder","level_id":"86412942","verifier":"Helix","creator":"HangerLord","holder":"HangerLord","video":"https:\/\/youtu.be\/npIZ8TGMDvk","score":21,"minimal_percent":52,"preview":"86412942.png","db_id":90},{"place":135,"name":"Ruthless","level_id":"85612571","verifier":"vaen","creator":"Surjaco","holder":"SurJaco","video":"https:\/\/youtu.be\/9jwVeYtc6H4","score":20,"minimal_percent":52,"preview":"85612571.jpg","db_id":91},{"place":136,"name":"Awedsy","level_id":"92132505","verifier":"Zeronium","creator":"SleyGD and Sink","holder":"sink","video":"https:\/\/youtu.be\/hx5ebE8e6Eo?si=fVn3MADyxpRwcvLf","score":19,"minimal_percent":52,"preview":"92132505.jpg","db_id":1051},{"place":137,"name":"Pagoda","level_id":"77669659","verifier":"Seturan","creator":"Seturan and more","holder":"Seturan","video":"https:\/\/youtu.be\/KVomsNjGalQ","score":18,"minimal_percent":61,"preview":"77669659.jpg","db_id":92},{"place":138,"name":"Deimos","level_id":"52955167","verifier":"npesta","creator":"EndLevel and more","holder":"EndLevel","video":"https:\/\/youtu.be\/FgxsNzQnF5o","score":17,"minimal_percent":54,"preview":"FgxsNzQnF5o.jpg","db_id":94},{"place":139,"name":"twocu","level_id":"76208118","verifier":"Baeru","creator":"btLisp","holder":"btLisp","video":"https:\/\/youtu.be\/2CIpEYs4cGE","score":16,"minimal_percent":57,"preview":"2CIpEYs4cGE.jpg","db_id":95},{"place":140,"name":"Coral Cave","level_id":"90891227","verifier":"Washed","creator":"Washed and awesomeme360","holder":"awesomeme360","video":"https:\/\/youtu.be\/kTOM1nSEF3I","score":15,"minimal_percent":66,"preview":"90891227.png","db_id":1005},{"place":141,"name":"Gracefully","level_id":"88226064","verifier":"theworldofme","creator":"Nindy and more","holder":"NindyBK","video":"https:\/\/youtu.be\/ILzPn3Ig-D8","score":14,"minimal_percent":58,"preview":"88226064.jpg","db_id":96},{"place":142,"name":"Aronia","level_id":"60564010","verifier":"Kotamon","creator":"Exen and more","holder":"Exen","video":"https:\/\/youtu.be\/eJe3i5KyKOk","score":13,"minimal_percent":62,"preview":"eJe3i5KyKOk.jpg","db_id":97},{"place":143,"name":"Dump","level_id":"89513590","verifier":"ZeusGD","creator":"GiggsRH","holder":"GiggsRH","video":"https:\/\/youtu.be\/UDrCb0rzuQo","score":12,"minimal_percent":56,"preview":"89513590.jpg","db_id":98},{"place":144,"name":"Talicron","level_id":"65986727","verifier":"Kotamon","creator":"Exen and more","holder":"Exen","video":"https:\/\/youtu.be\/e7mK0YAGsKU","score":11,"minimal_percent":54,"preview":"e7mK0YAGsKU.jpg","db_id":99},{"place":145,"name":"IthacropoliX","level_id":"80293947","verifier":"cobrablitz","creator":"BIGMAC77 and more","holder":"BIGMAC77","video":"https:\/\/youtu.be\/n4nbu_fZcf4","score":10,"minimal_percent":57,"preview":"80293947.jpg","db_id":100},{"place":146,"name":"Terminux","level_id":"76865589","verifier":"Laniakea","creator":"VulgarisAerae and more","holder":"Aerae","video":"https:\/\/youtu.be\/-UgocJ3WYn4","score":9,"minimal_percent":55,"preview":"-UgocJ3WYn4.jpg","db_id":101},{"place":147,"name":"Sigma","level_id":"51657783","verifier":"Technical","creator":"MidnCap and more","holder":"MindCap","video":"https:\/\/youtu.be\/3INdO0esQRw","score":8,"minimal_percent":57,"preview":"3INdO0esQRw.jpg","db_id":102},{"place":148,"name":"Enira","level_id":"69990515","verifier":"SpirteX","creator":"Exen and more","holder":"Exen","video":"https:\/\/youtu.be\/A67U4oAdkko","score":7,"minimal_percent":56,"preview":"A67U4oAdkko.jpg","db_id":103},{"place":149,"name":"ATOMIC CANNON","level_id":"77681476","verifier":"Zeronium","creator":"Lieb","holder":"LIEB","video":"https:\/\/youtu.be\/VZS5Yn9Y-OI","score":6,"minimal_percent":58,"preview":"VZS5Yn9Y-OI.jpg","db_id":104},{"place":150,"name":"untitled unmastered","level_id":"82217720","verifier":"vinny","creator":"para","holder":"para","video":"https:\/\/youtu.be\/zzPsYgyU4n4","score":5,"minimal_percent":65,"preview":"82217720.jpg","db_id":105}];
+
+    function getCookie(name) {
+        var matches = document.cookie.match(new RegExp(
+            "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+        ));
+        return matches ? decodeURIComponent(matches[1]) : undefined;
+    }
+
+    function showPushAddLevel(){
+        push = document.getElementById("push-add-level");
+
+        push.style.opacity = 1;
+        push.style.pointerEvents = "auto";
+    }
+
+    function hidePushAddLevel(){
+        push = document.getElementById("push-add-level");
+
+        push.style.opacity = 0;
+        push.style.pointerEvents = "none";
+    }
+
+    function dontShowPush(){
+        localStorage.setItem("hidePush", 1);
+        hidePushAddLevel();
+    }
+
+    let dontShow = localStorage.getItem("hidePush");
+    if (false){
+        setTimeout(function() {showPushAddLevel();}, 5000);}
+
+</script>
+
+<div class="container">
+    <header class="header header-sticky">
+    <ul class="navbar">
+        <div class="navbar__mobile-container">
+            <div class="navbar__mobile-btn"></div>
+        </div>
+        <div class="navbar__container navbar__container--mobile">
+            
+            <a class="navbar__link navbar__link__logo" href="index.htm"><i class="bi bi-globe-americas"></i> GLOBAL LIST</a>
+            
+            <div class="navbar__mobile-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <div class="navbar__container">
+            <div class="navbar__left">
+                <li class="navbar__item">
+                    <a class="navbar__link navbar__link__logo" href="index.htm"><i class="bi bi-globe-americas"></i> GLOBAL LIST</a>
+                </li>
+                <li class="navbar__item">
+                    <a href="javascript:void(0)" class="navbar__link"><i class="bi bi-list"></i> Lists</a>
+                    <div class="navbar__dropdown-content">
+                        <a class="navbar__link" href="index.htm">Main</a>
+                        <a class="navbar__link" href="beyondlist.html">Beyond</a>
+                        <a class="navbar__link" href="futurelist.html">Future</a>
+                    </div>
+                </li>
+                <li class="navbar__item">
+                    <a href="javascript:void(0)" class="navbar__link"><i class="bi bi-grid"></i> More</a>
+                    <div class="navbar__dropdown-content">
+
+                        <span class="navbar__link navbar__link--has-menu">
+                            <a class="navbar__link" href="javascript:void(0)">
+                                Record Submit
+                                <i class="bi bi-caret-right-fill"></i>
+                            </a>
+                            <span class="navbar__dropdown-content navbar__dropdown-content--sub-menu">
+                                <a class="navbar__link" href="submit/index.htm">Request</a>
+                                <a class="navbar__link" href="suggest/index.htm">Suggest</a>
+                            </span>
+                        </span>
+
+                        <a class="navbar__link" href="level_submit.html">Level Submit</a>
+                        <a class="navbar__link" href="top/players/index.htm">Top Players</a>
+
+                        <span class="navbar__link navbar__link--has-menu">
+                            <a class="navbar__link" href="javascript:void(0)">
+                                Top Countries
+                                <i class="bi bi-caret-right-fill"></i>
+                            </a>
+                            <span class="navbar__dropdown-content navbar__dropdown-content--sub-menu">
+                                <a class="navbar__link" href="top/countries/main/index.htm">Main</a>
+                                <a class="navbar__link" href="top/countries/advanced/index.htm">Advanced</a>
+                            </span>
+                        </span>
+
+                        <a class="navbar__link" href="rules.html">Rules</a>
+                        <a class="navbar__link" href="contacts.html">Contacts</a>
+                        <a class="navbar__link" href="roulette.html">Demon Roulette</a>
+                    </div>
+                </li>
+                <li class="navbar__item">
+                    <a href="javascript:void(0)" class="navbar__link"><i class="bi bi-globe"></i>Language</a>
+                    <div class="navbar__dropdown-content">
+                        <a class="navbar__link lang-select" data-lang="en" href="javascript:void(0)">
+                            <span class="fi fi-gb"></span>
+                            English
+                        </a>
+                        <a class="navbar__link lang-select" data-lang="ru" href="javascript:void(0)">
+                            <span class="fi fi-ru"></span>
+                            Русский
+                        </a>
+                        <a class="navbar__link lang-select" data-lang="uk" href="javascript:void(0)">
+                            <span class="fi fi-ua"></span>
+                            Українська
+                        </a>
+                    </div>
+                </li>
+
+                <li class="navbar__item">
+                    <a href="javascript:void(0)" class="navbar__link"><i class="bi bi-newspaper"></i>Our Social</a>
+                    <div class="navbar__dropdown-content">
+                        <a class="navbar__link" href="https://discord.gg/va8jt85Tev" target="_blank">
+                            <i class="bi bi-discord"></i>
+                            Discord
+                        </a>
+                        <a class="navbar__link" href="https://t.me/rebuildthegloballist" target="_blank">
+                            <i class="bi bi-telegram"></i>
+                            Telegram
+                        </a>
+                    </div>
+                </li>
+                
+                
+                            </div>
+
+            <div class="navbar__right">
+                    <li class="navbar__item">
+        <a class="navbar__link" href="signup.html"><i class="bi bi-rocket-takeoff"></i> Sign up</a>
+    </li>
+    <li class="navbar__item">
+        <a class="navbar__link" href="signin.html"><i class="bi bi-person"></i> Sign in</a>
+    </li>            </div>
+        </div>
+    </ul>
+</header>
+
+    <div class="content">
+
+        
+    </div>
+
+</div>
+
+<script crossorigin="" src="react%4018.2.0/umd/react.development.js"></script>
+<script crossorigin="" src="react-dom%4018.2.0/umd/react-dom.development.js"></script>
+<script src='babel-standalone%406.26.0/babel.js'></script>
+
+<script src="npm/sweetalert2%4011"></script>
+
+<script>
+    globalThis.havePermsToMove = false;
+</script>
+
+<script src="assets/js/list_search.js" type="text/babel"></script>
+<script src="assets/js/list_demon.js?v=2" type="text/babel"></script>
+<script src="assets/js/list_main.js" type="text/babel"></script>
+<script src="assets/js/init_list_main.js" type="text/babel"></script>
+<div class="backdrop">
+</div>
+<ul class="header header--mobile">
+    <div class="header__mobile-control">
+        <div class="navbar__mobile-btn navbar__mobile-btn--close">
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+
+    <li class="navbar__item">
+        <a href="javascript:void(0)" class="navbar__link navbar__link--dropdown-icon"><i class="bi bi-list"></i>
+            Lists</a>
+        <div class="navbar__dropdown-content">
+            <a class="navbar__link" href="index.htm">Main</a>
+            <a class="navbar__link" href="beyondlist.html">Beyond</a>
+            <a class="navbar__link" href="futurelist.html">Future</a>
+        </div>
+    </li>
+
+    <li class="navbar__item">
+        <a href="javascript:void(0)" class="navbar__link navbar__link--dropdown-icon"><i class="bi bi-grid"></i>
+            More</a>
+        <div class="navbar__dropdown-content">
+            <a class="navbar__link" href="submit.html">Record Submit</a>
+            <a class="navbar__link" href="suggest.html">Record Suggest</a>
+            <a class="navbar__link" href="level_submit.html">Level Submit</a>
+            <a class="navbar__link" href="top/players/index.htm">Top Players</a>
+            <a class="navbar__link" href="top/countries/main/index.htm">Top Countries (Main)</a>
+            <a class="navbar__link" href="top/countries/advanced/index.htm">Top Countries (Advanced)</a>
+            <a class="navbar__link" href="rules.html">Rules</a>
+            <a class="navbar__link" href="contacts.html">Contacts</a>
+            <a class="navbar__link" href="roulette.html">Demon Roulette</a>
+        </div>
+        
+    <li class="navbar__item">
+        <a href="javascript:void(0)" class="navbar__link navbar__link--dropdown-icon"><i class="bi bi-globe"></i>Language</a>
+        <div class="navbar__dropdown-content">
+            <a class="navbar__link lang-select" data-lang="en" href="javascript:void(0)">
+                <span class="fi fi-gb"></span>
+                English
+            </a>
+            <a class="navbar__link lang-select" data-lang="ru" href="javascript:void(0)">
+                <span class="fi fi-ru"></span>
+                Русский
+            </a>
+            <a class="navbar__link lang-select" data-lang="uk" href="javascript:void(0)">
+                <span class="fi fi-ua"></span>
+                Українська
+            </a>
+        </div>
+    </li>
+    <li class="navbar__item">
+        <a href="javascript:void(0)" class="navbar__link navbar__link--dropdown-icon"><i class="bi bi-newspaper"></i>Our Social</a>
+        <div class="navbar__dropdown-content">
+            <a class="navbar__link" href="https://discord.gg/va8jt85Tev">
+                <i class="bi bi-discord"></i>
+                Discord
+            </a>
+            <a class="navbar__link" href="https://t.me/rebuildthegloballist">
+                <i class="bi bi-telegram"></i>
+                Telegram
+            </a>
+        </div>
+    </li>
+    
+        <li class="navbar__item">
+        <a class="navbar__link" href="signup.html"><i class="bi bi-rocket-takeoff"></i> Sign up</a>
+    </li>
+    <li class="navbar__item">
+        <a class="navbar__link" href="signin.html"><i class="bi bi-person"></i> Sign in</a>
+    </li></ul>        
+        <button class="scroll-to-top-btn">
+            <i class="bi bi-arrow-up"></i>
+        </button>
+        
+        <script>
+        
+        const scrollToTop = () => {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+        
+        const setupHTMLForSmoothScroll = () => {
+            $("html").css("scroll-behavior", "smooth");
+            
+            $(window).on("scroll", (e) => {
+                if (e.currentTarget.pageYOffset >= 500) {
+                    $(".scroll-to-top-btn").show("fast");
+                }
+                else {
+                    $(".scroll-to-top-btn").hide("fast");
+                }
+            })
+            
+            $(".scroll-to-top-btn").click(() => {
+                scrollToTop();
+            })
+        }
+        
+        addEventListener("DOMContentLoaded", (event) => {
+            setTimeout(() => {
+                setupHTMLForSmoothScroll();
+            }, 0);
+            
+        });
+        
+        </script>
+        
+        <style>
+            .scroll-to-top-btn {
+                display: none;
+                position: fixed;
+                right: 0px;
+                bottom: 0px;
+                margin-bottom: 15px;
+                margin-right: 15px;
+                border: 1px gray solid;
+                border-radius: 9px;
+                background-color: white;
+                color: black;
+                font-size: 14pt;
+                padding: 20px;
+                opacity: 0.5;
+                transition: 0.2s;
+            }
+            .scroll-to-top-btn:hover {
+                opacity: 1;
+            }
+        </style>
+        
+        
+<script src="npm/bootstrap%405.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+<script src="assets/js/token-logginer.js"></script>
+</body>
+</html>

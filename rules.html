@@ -1,0 +1,625 @@
+﻿<!DOCTYPE html>
+<!-- Fix version build 2 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css?v=4">
+    <link rel="stylesheet" type="text/css" href="assets/css/toasts.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="gh/lipis/flag-icons%406.6.6/css/flag-icons.min.css">
+
+    <!--
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9G8THJPSFY"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-9G8THJPSFY');
+    </script>
+
+    <script type="text/javascript" >
+    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+    m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+    ym(89910388, "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true,
+            webvisor:true
+    });
+    </script>
+    
+    <noscript><div><img src="https://mc.yandex.ru/watch/89910388" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    -->
+
+</head>
+
+<body>
+    <script src="assets/libs/jquery.min.js"></script>
+
+    <!--<script src="/assets/js/languages/be.js"></script>
+    <script src="/assets/js/languages/pl.js"></script>-->
+    <script src="assets/js/languages/uk.js"></script>
+    <script src="assets/js/languages/ru.js"></script>
+    <script src="assets/js/translator.js?v=2"></script>
+    <script src="assets/js/toasts.js"></script>
+    
+    <script src="assets/libs/lazysizes.min.js"></script>
+    <script src="assets/libs/microplugin.min.js"></script>
+    <script src="assets/libs/sifter.min.js"></script>
+    <script src="assets/libs/selectize.min.js"></script>
+    <script src="assets/js/top_decorator.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script type="text/javascript" src="firebasejs/3.6.8/firebase.js"></script>
+    <script type="text/javascript" src="assets/js/pushes.js"></script><title>Rules | Demonlist</title>
+<meta name="description" content="Rules for recording and sending a record and conditions for confirming or rejecting your requests">
+
+<style type="text/css">
+
+    body{
+        background-image: url("assets/img/backgrounds/main.png");
+    }
+
+    a{
+    text-decoration: none;
+    color: #246F9A;
+    }
+    
+.wrap--bordered{
+    background-color: rgba(255,255,255,1);
+    background-position: 100% 0%;
+    background-repeat: no-repeat;
+
+    border-radius: 10px;
+}
+
+.rule-category-btn{
+    width: 90%;
+    height: 40px;
+    margin-top: 10px;
+
+    border: 2px solid lightgray;
+    border-radius: 5px;
+    background: rgba(250,250,250,1);
+
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.rule-category-inner{
+    width: 85%;
+    height: 0px;
+    padding-right: 45px;
+    border: 1px solid gray;
+    border-top: 0;
+    border-radius: 0 0 3px 3px;
+    background: rgba(255,255,255,0.5);
+
+    overflow: hidden;
+
+    display: flex;
+    justify-content: flex-start;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    font-size: 12pt;
+    word-break: normal;
+
+    opacity: 0;
+
+    transition: ease 0.5s;
+}
+
+.rule-title{
+    width: 100%;
+    padding: 10px;
+
+    font-size: 24pt;
+    background: rgba(0,0,0,0);
+    border-radius: 10px;
+    border-bottom: 0px solid rgba(0,0,0,0.25);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.rule-desc{
+    width: 100%;
+    padding: 20px;
+
+    font-size: 14pt;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    word-break: normal;
+}
+
+</style>
+
+<div class="container" style="background-image: none!important;">
+    <header class="header header-sticky">
+    <ul class="navbar">
+        <div class="navbar__mobile-container">
+            <div class="navbar__mobile-btn"></div>
+        </div>
+        <div class="navbar__container navbar__container--mobile">
+            
+            <a class="navbar__link navbar__link__logo" href="index.htm"><i class="bi bi-globe-americas"></i> GLOBAL LIST</a>
+            
+            <div class="navbar__mobile-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <div class="navbar__container">
+            <div class="navbar__left">
+                <li class="navbar__item">
+                    <a class="navbar__link navbar__link__logo" href="index.htm"><i class="bi bi-globe-americas"></i> GLOBAL LIST</a>
+                </li>
+                <li class="navbar__item">
+                    <a href="javascript:void(0)" class="navbar__link"><i class="bi bi-list"></i> Lists</a>
+                    <div class="navbar__dropdown-content">
+                        <a class="navbar__link" href="index.htm">Main</a>
+                        <a class="navbar__link" href="beyondlist.html">Beyond</a>
+                        <a class="navbar__link" href="futurelist.html">Future</a>
+                    </div>
+                </li>
+                <li class="navbar__item">
+                    <a href="javascript:void(0)" class="navbar__link"><i class="bi bi-grid"></i> More</a>
+                    <div class="navbar__dropdown-content">
+
+                        <span class="navbar__link navbar__link--has-menu">
+                            <a class="navbar__link" href="javascript:void(0)">
+                                Record Submit
+                                <i class="bi bi-caret-right-fill"></i>
+                            </a>
+                            <span class="navbar__dropdown-content navbar__dropdown-content--sub-menu">
+                                <a class="navbar__link" href="submit/index.htm">Request</a>
+                                <a class="navbar__link" href="suggest/index.htm">Suggest</a>
+                            </span>
+                        </span>
+
+                        <a class="navbar__link" href="level_submit.html">Level Submit</a>
+                        <a class="navbar__link" href="top/players/index.htm">Top Players</a>
+
+                        <span class="navbar__link navbar__link--has-menu">
+                            <a class="navbar__link" href="javascript:void(0)">
+                                Top Countries
+                                <i class="bi bi-caret-right-fill"></i>
+                            </a>
+                            <span class="navbar__dropdown-content navbar__dropdown-content--sub-menu">
+                                <a class="navbar__link" href="top/countries/main/index.htm">Main</a>
+                                <a class="navbar__link" href="top/countries/advanced/index.htm">Advanced</a>
+                            </span>
+                        </span>
+
+                        <a class="navbar__link" href="rules.html">Rules</a>
+                        <a class="navbar__link" href="contacts.html">Contacts</a>
+                        <a class="navbar__link" href="roulette.html">Demon Roulette</a>
+                    </div>
+                </li>
+                <li class="navbar__item">
+                    <a href="javascript:void(0)" class="navbar__link"><i class="bi bi-globe"></i>Language</a>
+                    <div class="navbar__dropdown-content">
+                        <a class="navbar__link lang-select" data-lang="en" href="javascript:void(0)">
+                            <span class="fi fi-gb"></span>
+                            English
+                        </a>
+                        <a class="navbar__link lang-select" data-lang="ru" href="javascript:void(0)">
+                            <span class="fi fi-ru"></span>
+                            Русский
+                        </a>
+                        <a class="navbar__link lang-select" data-lang="uk" href="javascript:void(0)">
+                            <span class="fi fi-ua"></span>
+                            Українська
+                        </a>
+                    </div>
+                </li>
+
+                <li class="navbar__item">
+                    <a href="javascript:void(0)" class="navbar__link"><i class="bi bi-newspaper"></i>Our Social</a>
+                    <div class="navbar__dropdown-content">
+                        <a class="navbar__link" href="https://discord.gg/va8jt85Tev" target="_blank">
+                            <i class="bi bi-discord"></i>
+                            Discord
+                        </a>
+                        <a class="navbar__link" href="https://t.me/rebuildthegloballist" target="_blank">
+                            <i class="bi bi-telegram"></i>
+                            Telegram
+                        </a>
+                    </div>
+                </li>
+                
+                
+                            </div>
+
+            <div class="navbar__right">
+                    <li class="navbar__item">
+        <a class="navbar__link" href="signup.html"><i class="bi bi-rocket-takeoff"></i> Sign up</a>
+    </li>
+    <li class="navbar__item">
+        <a class="navbar__link" href="signin.html"><i class="bi bi-person"></i> Sign in</a>
+    </li>            </div>
+        </div>
+    </ul>
+</header>
+    <div class="content content--center" style="background-image: none!important">
+        <div class="wrap wrap--bordered">
+            <div class="level-info" style="background-image: none!important">
+
+
+<script>
+
+function nl2br (str, is_xhtml) {
+    if (typeof str === 'undefined' || str === null) {
+        return '';
+    }
+    var breakTag = (is_xhtml || typeof is_xhtml === 'undefined') ? '<br />' : '<br>';
+    return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + breakTag + '$2');
+}
+    
+function openSlide(elem){
+    if (document.getElementById(elem).style.height == "0px")
+            {           document.getElementById(elem).style.height = (document.getElementById(elem).scrollHeight+20)+"px";
+                        document.getElementById(elem).style.paddingLeft = "25px";
+                        document.getElementById(elem).style.paddingRight = "20px";
+                        document.getElementById(elem).style.opacity = 1;}
+
+    else    {       document.getElementById(elem).style.height = "0px";
+                    document.getElementById(elem).style.paddingLeft = "0px";
+                    document.getElementById(elem).style.paddingRight = "45px";
+                    document.getElementById(elem).style.opacity = 0;}
+}
+
+function mainBR () {
+    for (let i = 1; i <= 12; i++) {
+        if (i == 2) continue;
+        const iik = document.getElementById('inf' + i).innerHTML;
+        document.getElementById('inf' + i).innerHTML = nl2br(iik);
+    }
+}
+
+</script>
+
+<div class="rule-title" onshow="mainBR()"> Rules </div>
+
+<div class="rule-category-btn" onclick="openSlide('inf1')"> PC Rules </div>
+<div class="rule-category-inner" id="inf1" style="height:0px;"> 
+
+--[ Required]
+
+1. One of the following must be enabled:
+- a) Orb pulsation
+- b) Wave pulsation
+- c) FPS display in the corner
+
+2. Clicks should be audible.
+
+3. A raw recording of the main demon is required, posted on Google Drive. The raw recording should not be renamed or edited.
+
+--[ Recommended]
+
+1) Display of the cheat indicator in the corner (green circle must be displayed).
+
+2) Display of real time in the corner and game session.
+    </div>
+
+<div class="rule-category-btn" onclick="openSlide('inf3')"> Forbidden PC Software </div>
+<div class="rule-category-inner" id="inf3" style="height:0px;"> 
+
+1. All existing GDBots (including the GDBot overlay with Lock Delta enabled).
+2. Noclip, NoSpike, Hitbox Multiplier, and similar hacks that alter the player's interaction with obstacles.
+3. Speedhack.
+4. Other prohibited functions in Megahack include Hitbox mode, no mirrors, Gravity, and any settings for the Meta function apart from "death".
+
+[!!!] Trimming and video editing that falsely presents completion as being fair is prohibited.
+    </div>
+
+<div class="rule-category-btn" onclick="openSlide('inf4')"> Allowed PC situations </div>
+<div class="rule-category-inner" id="inf4" style="height:0px;"> 
+
+1. Noclip Accuracy 100%
+2. Level passed on the first attempt in practice mode.
+3. Start position set at 0.00% (Start position switch only).
+4. If you have completed the entire gameplay and accidentally exited the level.
+5. There are no limitations on TPS and FPS bypass values.
+    </div>
+
+
+
+<div class="rule-category-btn" onclick="openSlide('inf5')"> Mod Permissions </div>
+<div class="rule-category-inner" id="inf5" style="height:0px;"> 
+
+Any moderator has the right to request a full recording of your record within 7 days. By submitting the record, you agree not to delete the raw footage during this period, as this may cause problems.
+
+Any moderator may request a proof stream, with the approval of the List Leader and the recording of it. You may refuse the proof stream for several reasons:
+
+1) Your internet connection is not strong enough, and you can prove it by showing a connection analysis and geoposition.
+
+2) You have made extra-offline proofs (which ones, decide with the moderator).
+
+3) There is no access to a PC, so the check will be postponed.
+
+Any moderator may request a full real play proof recording, with the approval of the List Leader. You may refuse it for several reasons:
+
+1) You have lost both hands
+
+2) Your phone has been stolen ¯\_(ツ)_/¯
+    </div>
+
+
+
+<div class="rule-category-btn" onclick="openSlide('inf6')"> Android Rules </div>
+<div class="rule-category-inner" id="inf6" style="height:0px;"> 
+
+--[ Required ]
+
+1) Enabled trail/FPS in the corner.
+2) Enabled micro/Europly recording.
+3) Video with at least 20 FPS.
+
+--[ Recommended ]
+
+1) Cheat indicator with a mod menu.
+2) Full recording.
+
+--[ Raw footage ]
+
+1) Cannot be renamed.
+2) Upload to VK, Google Drive, Mega, Cloud, Yandex Disk.
+3) Cannot be edited.
+
+    </div>
+
+
+
+<div class="rule-category-btn" onclick="openSlide('inf7')"> Forbidden Android Software </div>
+<div class="rule-category-inner" id="inf7" style="height:0px;"> 
+
+All the functions of the mod menu, which cause the cheat indicator to turn red, Game Guardian and other speed hack software are prohibited.
+
+Cheating could also be done in the video editor, so any cropping and overlaying of taps, as you may have guessed, is a punishable offense.
+    </div>
+
+
+
+<div class="rule-category-btn" onclick="openSlide('inf8')"> IOS Rules </div>
+<div class="rule-category-inner" id="inf8" style="height:0px;"> 
+
+--[ Required ]
+
+1) Everyplay recording/Recording with microphone on
+
+--[ Recommended ]
+
+1) Full recording, if available
+
+--[ Raw footage ]
+
+1) Cannot be renamed
+2) Can be uploaded to VK, Google Drive, Mega, Cloud, Yandex Disk
+3) Cannot be edited
+
+LDM on Apple devices is allowed with any strength, except for memory levels, if your device is older than 2017.
+
+    </div>
+
+
+
+<div class="rule-category-btn" onclick="openSlide('inf9')"> Forbidden IOS Software </div>
+<div class="rule-category-inner" id="inf9" style="height:0px;"> 
+
+Installed Jailbreak.
+
+Cheating can also be done in video editors, so any cuts and tap overlays, as you may have guessed, are punishable.
+
+Now about the White List for iOS and Android players. No one will ask for proof streams, all you need to do is submit an application by writing a list to the leader in PM, everything will be viewed individually.
+
+    </div>
+
+
+
+<div class="rule-category-btn" onclick="openSlide('inf10')"> LDM Rules for PC </div>
+<div class="rule-category-inner" id="inf10" style="height:0px;"> 
+
+You can use a very strong LDM on levels that are not considered memory levels (for example, Super Probably Level, Requiem, etc.) if you can prove that your computer cannot go above 120 FPS on the regular LDM version. The List team has no doubt that even with good stuff, you will still beat a hypothetical Crimson Planet, not in a layout form, and we also have no doubt that if you have a laggy laptop, playing will be much harder, along with poor response time and other nightmares.
+
+Using such a strong LDM on known memory levels is strictly forbidden. In all other cases, try to play on the LDM version without visual nerfs, otherwise we have the right to ask you to use another version of the level where such ease does not exist.
+    </div>
+
+
+
+<div class="rule-category-btn" onclick="openSlide('inf12')"> Punishments </div>
+<div class="rule-category-inner" id="inf12" style="height:0px;"> 
+
+1. Attempt to submit a hacked record - ban for 3 months.
+2. Cheats were found in the accepted records - ban for 6 months.
+3. Started cheating after being added to the White List - ban for 9 months.
+4. Any jokes that disrupt the list's function will also result in a ban for a period of one week to one month (such as submitting someone else's record as your own and reaching top 1 demon, etc.)
+
+You can also prove that only one record was hacked, and the rest will remain on the list, but under a different name and without a link to you. Your new records will not be added until the ban period expires.
+
+There are cases where a person cheats accidentally, for example, forgetting to turn off noclip. In this case, you may not be banned. However, this is all individual and there are many nuances.
+
+What else is prohibited and punishable by a ban for 3 months?
+1) Shared accounts
+2) Fake accounts
+
+In case of a ban, you will be added to the Black List, which will include everyone who has ever cheated. You cannot remove yourself from the list and it directly prohibits you from ever being added to the White List.
+
+    </div>
+
+<div class="rule-desc">
+Do not forget that each case is individual, and even the most problematic record can be counted during the proceedings in the situation, so do not lose hope, even if you accidentally did not record clicks. </div>
+    
+
+
+</div>
+
+
+
+
+
+
+
+
+
+                            </div>
+        </div>
+    </div>
+
+<script>
+mainBR();
+</script><div class="backdrop">
+</div>
+<ul class="header header--mobile">
+    <div class="header__mobile-control">
+        <div class="navbar__mobile-btn navbar__mobile-btn--close">
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+
+    <li class="navbar__item">
+        <a href="javascript:void(0)" class="navbar__link navbar__link--dropdown-icon"><i class="bi bi-list"></i>
+            Lists</a>
+        <div class="navbar__dropdown-content">
+            <a class="navbar__link" href="index.htm">Main</a>
+            <a class="navbar__link" href="beyondlist.html">Beyond</a>
+            <a class="navbar__link" href="futurelist.html">Future</a>
+        </div>
+    </li>
+
+    <li class="navbar__item">
+        <a href="javascript:void(0)" class="navbar__link navbar__link--dropdown-icon"><i class="bi bi-grid"></i>
+            More</a>
+        <div class="navbar__dropdown-content">
+            <a class="navbar__link" href="submit.html">Record Submit</a>
+            <a class="navbar__link" href="suggest.html">Record Suggest</a>
+            <a class="navbar__link" href="level_submit.html">Level Submit</a>
+            <a class="navbar__link" href="top/players/index.htm">Top Players</a>
+            <a class="navbar__link" href="top/countries/main/index.htm">Top Countries (Main)</a>
+            <a class="navbar__link" href="top/countries/advanced/index.htm">Top Countries (Advanced)</a>
+            <a class="navbar__link" href="rules.html">Rules</a>
+            <a class="navbar__link" href="contacts.html">Contacts</a>
+            <a class="navbar__link" href="roulette.html">Demon Roulette</a>
+        </div>
+        
+    <li class="navbar__item">
+        <a href="javascript:void(0)" class="navbar__link navbar__link--dropdown-icon"><i class="bi bi-globe"></i>Language</a>
+        <div class="navbar__dropdown-content">
+            <a class="navbar__link lang-select" data-lang="en" href="javascript:void(0)">
+                <span class="fi fi-gb"></span>
+                English
+            </a>
+            <a class="navbar__link lang-select" data-lang="ru" href="javascript:void(0)">
+                <span class="fi fi-ru"></span>
+                Русский
+            </a>
+            <a class="navbar__link lang-select" data-lang="uk" href="javascript:void(0)">
+                <span class="fi fi-ua"></span>
+                Українська
+            </a>
+        </div>
+    </li>
+    <li class="navbar__item">
+        <a href="javascript:void(0)" class="navbar__link navbar__link--dropdown-icon"><i class="bi bi-newspaper"></i>Our Social</a>
+        <div class="navbar__dropdown-content">
+            <a class="navbar__link" href="https://discord.gg/va8jt85Tev">
+                <i class="bi bi-discord"></i>
+                Discord
+            </a>
+            <a class="navbar__link" href="https://t.me/rebuildthegloballist">
+                <i class="bi bi-telegram"></i>
+                Telegram
+            </a>
+        </div>
+    </li>
+    
+        <li class="navbar__item">
+        <a class="navbar__link" href="signup.html"><i class="bi bi-rocket-takeoff"></i> Sign up</a>
+    </li>
+    <li class="navbar__item">
+        <a class="navbar__link" href="signin.html"><i class="bi bi-person"></i> Sign in</a>
+    </li></ul>        
+        <button class="scroll-to-top-btn">
+            <i class="bi bi-arrow-up"></i>
+        </button>
+        
+        <script>
+        
+        const scrollToTop = () => {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+        
+        const setupHTMLForSmoothScroll = () => {
+            $("html").css("scroll-behavior", "smooth");
+            
+            $(window).on("scroll", (e) => {
+                if (e.currentTarget.pageYOffset >= 500) {
+                    $(".scroll-to-top-btn").show("fast");
+                }
+                else {
+                    $(".scroll-to-top-btn").hide("fast");
+                }
+            })
+            
+            $(".scroll-to-top-btn").click(() => {
+                scrollToTop();
+            })
+        }
+        
+        addEventListener("DOMContentLoaded", (event) => {
+            setTimeout(() => {
+                setupHTMLForSmoothScroll();
+            }, 0);
+            
+        });
+        
+        </script>
+        
+        <style>
+            .scroll-to-top-btn {
+                display: none;
+                position: fixed;
+                right: 0px;
+                bottom: 0px;
+                margin-bottom: 15px;
+                margin-right: 15px;
+                border: 1px gray solid;
+                border-radius: 9px;
+                background-color: white;
+                color: black;
+                font-size: 14pt;
+                padding: 20px;
+                opacity: 0.5;
+                transition: 0.2s;
+            }
+            .scroll-to-top-btn:hover {
+                opacity: 1;
+            }
+        </style>
+        
+        
+<script src="npm/bootstrap%405.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+<script src="assets/js/token-logginer.js"></script>
+</body>
+</html>

@@ -1,0 +1,884 @@
+﻿<!DOCTYPE html>
+<!-- Fix version build 2 -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css?v=4">
+    <link rel="stylesheet" type="text/css" href="assets/css/toasts.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="gh/lipis/flag-icons%406.6.6/css/flag-icons.min.css">
+
+    <!--
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9G8THJPSFY"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-9G8THJPSFY');
+    </script>
+
+    <script type="text/javascript" >
+    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+    m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+    ym(89910388, "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true,
+            webvisor:true
+    });
+    </script>
+    
+    <noscript><div><img src="https://mc.yandex.ru/watch/89910388" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    -->
+
+</head>
+
+<body>
+    <script src="assets/libs/jquery.min.js"></script>
+
+    <!--<script src="/assets/js/languages/be.js"></script>
+    <script src="/assets/js/languages/pl.js"></script>-->
+    <script src="assets/js/languages/uk.js"></script>
+    <script src="assets/js/languages/ru.js"></script>
+    <script src="assets/js/translator.js?v=2"></script>
+    <script src="assets/js/toasts.js"></script>
+    
+    <script src="assets/libs/lazysizes.min.js"></script>
+    <script src="assets/libs/microplugin.min.js"></script>
+    <script src="assets/libs/sifter.min.js"></script>
+    <script src="assets/libs/selectize.min.js"></script>
+    <script src="assets/js/top_decorator.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script type="text/javascript" src="firebasejs/3.6.8/firebase.js"></script>
+    <script type="text/javascript" src="assets/js/pushes.js"></script>
+<meta name="description" content="Future List - list of levels that can become new top extreme demons in the game Geometry Dash">
+<title>Future List | Demonlist</title>
+
+    <div class="penumbra"></div>
+<style>
+    body {
+        background-image: url('assets/img/backgrounds/future.png');
+    }
+
+    .level-panel__container {
+        box-shadow: none;
+    }
+</style>
+
+<div class="container">
+	<header class="header header-sticky">
+    <ul class="navbar">
+        <div class="navbar__mobile-container">
+            <div class="navbar__mobile-btn"></div>
+        </div>
+        <div class="navbar__container navbar__container--mobile">
+            
+            <a class="navbar__link navbar__link__logo" href="index.htm"><i class="bi bi-globe-americas"></i> GLOBAL LIST</a>
+            
+            <div class="navbar__mobile-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <div class="navbar__container">
+            <div class="navbar__left">
+                <li class="navbar__item">
+                    <a class="navbar__link navbar__link__logo" href="index.htm"><i class="bi bi-globe-americas"></i> GLOBAL LIST</a>
+                </li>
+                <li class="navbar__item">
+                    <a href="javascript:void(0)" class="navbar__link"><i class="bi bi-list"></i> Lists</a>
+                    <div class="navbar__dropdown-content">
+                        <a class="navbar__link" href="index.htm">Main</a>
+                        <a class="navbar__link" href="beyondlist.html">Beyond</a>
+                        <a class="navbar__link" href="futurelist.html">Future</a>
+                    </div>
+                </li>
+                <li class="navbar__item">
+                    <a href="javascript:void(0)" class="navbar__link"><i class="bi bi-grid"></i> More</a>
+                    <div class="navbar__dropdown-content">
+
+                        <span class="navbar__link navbar__link--has-menu">
+                            <a class="navbar__link" href="javascript:void(0)">
+                                Record Submit
+                                <i class="bi bi-caret-right-fill"></i>
+                            </a>
+                            <span class="navbar__dropdown-content navbar__dropdown-content--sub-menu">
+                                <a class="navbar__link" href="submit/index.htm">Request</a>
+                                <a class="navbar__link" href="suggest/index.htm">Suggest</a>
+                            </span>
+                        </span>
+
+                        <a class="navbar__link" href="level_submit.html">Level Submit</a>
+                        <a class="navbar__link" href="top/players/index.htm">Top Players</a>
+
+                        <span class="navbar__link navbar__link--has-menu">
+                            <a class="navbar__link" href="javascript:void(0)">
+                                Top Countries
+                                <i class="bi bi-caret-right-fill"></i>
+                            </a>
+                            <span class="navbar__dropdown-content navbar__dropdown-content--sub-menu">
+                                <a class="navbar__link" href="top/countries/main/index.htm">Main</a>
+                                <a class="navbar__link" href="top/countries/advanced/index.htm">Advanced</a>
+                            </span>
+                        </span>
+
+                        <a class="navbar__link" href="rules.html">Rules</a>
+                        <a class="navbar__link" href="contacts.html">Contacts</a>
+                        <a class="navbar__link" href="roulette.html">Demon Roulette</a>
+                    </div>
+                </li>
+                <li class="navbar__item">
+                    <a href="javascript:void(0)" class="navbar__link"><i class="bi bi-globe"></i>Language</a>
+                    <div class="navbar__dropdown-content">
+                        <a class="navbar__link lang-select" data-lang="en" href="javascript:void(0)">
+                            <span class="fi fi-gb"></span>
+                            English
+                        </a>
+                        <a class="navbar__link lang-select" data-lang="ru" href="javascript:void(0)">
+                            <span class="fi fi-ru"></span>
+                            Русский
+                        </a>
+                        <a class="navbar__link lang-select" data-lang="uk" href="javascript:void(0)">
+                            <span class="fi fi-ua"></span>
+                            Українська
+                        </a>
+                    </div>
+                </li>
+
+                <li class="navbar__item">
+                    <a href="javascript:void(0)" class="navbar__link"><i class="bi bi-newspaper"></i>Our Social</a>
+                    <div class="navbar__dropdown-content">
+                        <a class="navbar__link" href="https://discord.gg/va8jt85Tev" target="_blank">
+                            <i class="bi bi-discord"></i>
+                            Discord
+                        </a>
+                        <a class="navbar__link" href="https://t.me/rebuildthegloballist" target="_blank">
+                            <i class="bi bi-telegram"></i>
+                            Telegram
+                        </a>
+                    </div>
+                </li>
+                
+                                    
+                        <li class="navbar__item">
+                            <a href="javascript:void(0)" class="navbar__link search-btn"><i class="bi bi-search"></i>Search</a>
+                        </li>
+                    
+                    
+                            </div>
+
+            <div class="navbar__right">
+                    <li class="navbar__item">
+        <a class="navbar__link" href="signup.html"><i class="bi bi-rocket-takeoff"></i> Sign up</a>
+    </li>
+    <li class="navbar__item">
+        <a class="navbar__link" href="signin.html"><i class="bi bi-person"></i> Sign in</a>
+    </li>            </div>
+        </div>
+    </ul>
+</header>
+	<div class="content">
+            <div class="demon-search">
+        <div class="up-row">
+            <button class="close-search-btn normal-input">
+                <i class="bi bi-arrow-90deg-left"></i>
+            </button>
+            <form class="searcher">
+                <input class="normal-input" id="demon_name_input" name="demon_name" type="text" placeholder="Search a level">
+            </form>
+            
+        </div>
+            
+        <div class="demons-search-container">
+        </div>
+        
+    </div>
+    
+    <script>
+    
+    const clamp = (num, min, max) => Math.min(Math.max(num, min), max);
+    
+    const getDemonResultComponent = (data, fadeTime) => {
+            return `
+            <a href="/futurelist/${data.id}">
+            <div class="demon-result" style="animation-duration: ${fadeTime}s">
+                <? echo $this->type == "main" ? "#\${data.place} - " : "" ?>${data.name}<br />
+                <sub>${data.holder}</sub>
+            </div>
+            </a>`;
+    }
+    
+    const constructDemonResultList = (list) => {
+        $('.demons-search-container').html("");
+        list.forEach((demon, index) => {
+            $('.demons-search-container').append(
+                getDemonResultComponent(demon, clamp(index * 0.15, 0.1, 0.7))
+            );
+        });
+    }
+    
+    const searchInList = async(s) => {
+        const response = await fetch("/api/list_future/?s="+s, {
+            method: "GET",
+            credentials: "same-origin",
+            headers: {
+                "Content-Type": "text/plain;charset=UTF-8"
+            },
+            
+        });
+        const jsonData = await response.json();
+        return jsonData;
+    }
+    
+    const processSearchInput = async(e) => {
+        const demonName = e.currentTarget.value;
+        
+        if (demonName.length == 0) return constructDemonResultList([]);
+        
+        const result = await searchInList(demonName);
+        constructDemonResultList(result);
+        
+        console.log(result);
+    }
+    
+    $('#demon_name_input').on('input', function(e){
+        processSearchInput(e);
+    });
+    
+    $('.searcher').submit((e) => {
+        e.preventDefault();
+    })
+    
+    addEventListener("DOMContentLoaded", (event) => {
+        
+        $('.close-search-btn, .search-btn').click(() => {
+            $('.demon-search').toggleClass("active");
+            
+            if ($('.demon-search.active').length === 1) {
+                
+                document.querySelector('#demon_name_input').value = '';
+                constructDemonResultList([]);
+                
+                if ($(".header--mobile.active").length === 1) {
+                    toggleMobileMenu();
+                }
+                $('#demon_name_input').focus();
+            }
+        })
+        
+    });
+        
+    $('.demon-search').on("keyup", (e) => {
+        if (e.keyCode === 27)
+            $('.demon-search').toggleClass("active");
+    })
+        
+        
+    </script>
+    
+    <style>
+    
+    @keyframes fadeInDemon {
+        from {opacity: 0.0;}
+        to {opacity: 1;}
+    }
+    
+    .demon-search {
+        z-index: 600;
+    }
+    
+    .alittlemargin {
+        margin-right: 10px;
+    }
+    
+    .demon-result sub {
+        font-size: 11pt;
+    }
+    
+    .demons-search-container a {
+        color: black;
+        text-decoration: none;
+        align-self: center;
+        width: 90%;
+    }
+    
+    .demons-search-container {
+        margin-top: 10px;  
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+    
+    .demon-result {
+        width: 100%;
+        padding: 15px;
+        background-color: white;
+        border-radius: 9px;
+        color: black;
+        font-size: 15pt;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        align-self: center;
+        animation-name: fadeInDemon;
+    }
+    
+    .searcher input {
+        height: 100%;
+        margin-left: 10px;
+        padding: 5px;
+        padding-left: 10px;
+        padding-right: 10px;
+        width: 300px;
+    }
+    
+    .close-search-btn {
+        width: 50px;
+        height: 50px;
+    }
+    
+    
+    .up-row {
+        display: flex;
+        align-items: middle;
+        flex-direction: row;
+        justify-content: center;
+        margin-top: 60px;
+    }
+    
+    .demon-search {
+        display: flex;
+        position: fixed;
+        left: 0px;
+        right: 0px;
+        top: 0px;
+        bottom: 0px;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        opacity: 0.0;
+        transition: 0.5s;
+        background-color: rgba(0, 0, 0, 0.5);
+        padding: 10px;
+        flex-direction: column;
+        overflow-y: hidden;
+    }
+    
+    .demon-search.active {
+        pointer-events: all;
+        opacity: 1.0;
+        overflow-y: auto;
+    }
+    
+    .normal-input {
+        padding: 8px;
+        font-size: 14pt;
+        background-color: white;
+        border: none;
+        border-radius: 9px;
+    }
+    
+    </style>
+    
+        <div class="level-panel">
+        <div class="level-panel__container">
+            <a href="https://youtu.be/3IjecL747vs?si=UdCikYQyJ3uTJPnB" target="_blank" class="level-panel__link level-panel__link--img-container">
+                <img class="lazyload level-panel__img" data-src="/data/previews/3IjecL747vs.jpg" alt="" onload="imgLoaded(this)">
+            </a>
+            <a href="futurelist/91.html" class="level-panel__info level-panel__link">
+                <span class="level-panel__name">#1 - Aeternus</span>
+                <span class="level-panel__holder">-</span>
+            </a>
+        </div>
+    </div>    <div class="level-panel">
+        <div class="level-panel__container">
+            <a href="https://youtu.be/hYMbrKLqbhg" target="_blank" class="level-panel__link level-panel__link--img-container">
+                <img class="lazyload level-panel__img" data-src="/data/previews/hYMbrKLqbhg.jpg" alt="" onload="imgLoaded(this)">
+            </a>
+            <a href="futurelist/16.html" class="level-panel__info level-panel__link">
+                <span class="level-panel__name">#2 - Azure Flare</span>
+                <span class="level-panel__holder">Aeden</span>
+            </a>
+        </div>
+    </div>    <div class="level-panel">
+        <div class="level-panel__container">
+            <a href="https://youtu.be/03EwCewqZWo" target="_blank" class="level-panel__link level-panel__link--img-container">
+                <img class="lazyload level-panel__img" data-src="/data/previews/XIfIrbVPVW0.jpg" alt="" onload="imgLoaded(this)">
+            </a>
+            <a href="futurelist/18.html" class="level-panel__info level-panel__link">
+                <span class="level-panel__name">#3 - Eternal Night</span>
+                <span class="level-panel__holder">Swiborg</span>
+            </a>
+        </div>
+    </div>    <div class="level-panel">
+        <div class="level-panel__container">
+            <a href="https://youtu.be/ALiDkwlLPgc" target="_blank" class="level-panel__link level-panel__link--img-container">
+                <img class="lazyload level-panel__img" data-src="/data/previews/ALiDkwlLPgc.jpg" alt="" onload="imgLoaded(this)">
+            </a>
+            <a href="futurelist/53.html" class="level-panel__info level-panel__link">
+                <span class="level-panel__name">#4 - Exasperation</span>
+                <span class="level-panel__holder">open verification</span>
+            </a>
+        </div>
+    </div>    <div class="level-panel">
+        <div class="level-panel__container">
+            <a href="https://youtu.be/qpqZ2ngUZiU" target="_blank" class="level-panel__link level-panel__link--img-container">
+                <img class="lazyload level-panel__img" data-src="/data/previews/H_vbzimHxfY.jpg" alt="" onload="imgLoaded(this)">
+            </a>
+            <a href="futurelist/70.html" class="level-panel__info level-panel__link">
+                <span class="level-panel__name">#5 - Vehemence</span>
+                <span class="level-panel__holder">open verification</span>
+            </a>
+        </div>
+    </div>    <div class="level-panel">
+        <div class="level-panel__container">
+            <a href="https://youtu.be/bQXnREyaO34" target="_blank" class="level-panel__link level-panel__link--img-container">
+                <img class="lazyload level-panel__img" data-src="/data/previews/bQXnREyaO34.jpg" alt="" onload="imgLoaded(this)">
+            </a>
+            <a href="futurelist/58.html" class="level-panel__info level-panel__link">
+                <span class="level-panel__name">#6 - GRIEF</span>
+                <span class="level-panel__holder">Doggie</span>
+            </a>
+        </div>
+    </div>    <div class="level-panel">
+        <div class="level-panel__container">
+            <a href="https://youtu.be/BLt_-gDitRQ" target="_blank" class="level-panel__link level-panel__link--img-container">
+                <img class="lazyload level-panel__img" data-src="/data/previews/BLt_-gDitRQ.jpg" alt="" onload="imgLoaded(this)">
+            </a>
+            <a href="futurelist/81.html" class="level-panel__info level-panel__link">
+                <span class="level-panel__name">#7 - ASTEC</span>
+                <span class="level-panel__holder">Kopyedz</span>
+            </a>
+        </div>
+    </div>    <div class="level-panel">
+        <div class="level-panel__container">
+            <a href="https://youtu.be/sRCdoA_P9cQ" target="_blank" class="level-panel__link level-panel__link--img-container">
+                <img class="lazyload level-panel__img" data-src="/data/previews/sRCdoA_P9cQ.jpg" alt="" onload="imgLoaded(this)">
+            </a>
+            <a href="futurelist/8.html" class="level-panel__info level-panel__link">
+                <span class="level-panel__name">#8 - Misanthrope</span>
+                <span class="level-panel__holder">BigMacGD</span>
+            </a>
+        </div>
+    </div>    <div class="level-panel">
+        <div class="level-panel__container">
+            <a href="https://youtu.be/Auj2CEw3swQ" target="_blank" class="level-panel__link level-panel__link--img-container">
+                <img class="lazyload level-panel__img" data-src="/data/previews/Auj2CEw3swQ.jpg" alt="" onload="imgLoaded(this)">
+            </a>
+            <a href="futurelist/1.html" class="level-panel__info level-panel__link">
+                <span class="level-panel__name">#9 - Aquamarine</span>
+                <span class="level-panel__holder">open verification</span>
+            </a>
+        </div>
+    </div>    <div class="level-panel">
+        <div class="level-panel__container">
+            <a href="https://youtu.be/E2guz5tw6c8" target="_blank" class="level-panel__link level-panel__link--img-container">
+                <img class="lazyload level-panel__img" data-src="/data/previews/E2guz5tw6c8.jpg" alt="" onload="imgLoaded(this)">
+            </a>
+            <a href="futurelist/46.html" class="level-panel__info level-panel__link">
+                <span class="level-panel__name">#10 - Silent Acropolis</span>
+                <span class="level-panel__holder">RaeveZ</span>
+            </a>
+        </div>
+    </div>    <div class="level-panel">
+        <div class="level-panel__container">
+            <a href="https://youtu.be/Wn6v-8yT9VE" target="_blank" class="level-panel__link level-panel__link--img-container">
+                <img class="lazyload level-panel__img" data-src="/data/previews/Wn6v-8yT9VE.jpg" alt="" onload="imgLoaded(this)">
+            </a>
+            <a href="futurelist/88.html" class="level-panel__info level-panel__link">
+                <span class="level-panel__name">#11 - FLAMEWALL</span>
+                <span class="level-panel__holder">OneAlphaHelix</span>
+            </a>
+        </div>
+    </div>    <div class="level-panel">
+        <div class="level-panel__container">
+            <a href="https://youtu.be/vp3kVpqOP-s" target="_blank" class="level-panel__link level-panel__link--img-container">
+                <img class="lazyload level-panel__img" data-src="/data/previews/BvEQZNoMPAs.jpg" alt="" onload="imgLoaded(this)">
+            </a>
+            <a href="futurelist/34.html" class="level-panel__info level-panel__link">
+                <span class="level-panel__name">#12 - Ascension To Heaven</span>
+                <span class="level-panel__holder">Denni</span>
+            </a>
+        </div>
+    </div>    <div class="level-panel">
+        <div class="level-panel__container">
+            <a href="https://youtu.be/vdiHdeWNgoE" target="_blank" class="level-panel__link level-panel__link--img-container">
+                <img class="lazyload level-panel__img" data-src="/data/previews/Mnv6e0YtWjo.jpg" alt="" onload="imgLoaded(this)">
+            </a>
+            <a href="futurelist/33.html" class="level-panel__info level-panel__link">
+                <span class="level-panel__name">#13 - Element 111 RG</span>
+                <span class="level-panel__holder">TheRealMike</span>
+            </a>
+        </div>
+    </div>    <div class="level-panel">
+        <div class="level-panel__container">
+            <a href="https://youtu.be/Go2xnL5uStI" target="_blank" class="level-panel__link level-panel__link--img-container">
+                <img class="lazyload level-panel__img" data-src="/data/previews/Go2xnL5uStI.jpg" alt="" onload="imgLoaded(this)">
+            </a>
+            <a href="futurelist/11.html" class="level-panel__info level-panel__link">
+                <span class="level-panel__name">#14 - Anemesis</span>
+                <span class="level-panel__holder">swiborg</span>
+            </a>
+        </div>
+    </div>    <div class="level-panel">
+        <div class="level-panel__container">
+            <a href="https://youtu.be/_L6Lh-ORhmw" target="_blank" class="level-panel__link level-panel__link--img-container">
+                <img class="lazyload level-panel__img" data-src="/data/previews/_L6Lh-ORhmw.png" alt="" onload="imgLoaded(this)">
+            </a>
+            <a href="futurelist/39.html" class="level-panel__info level-panel__link">
+                <span class="level-panel__name">#15 - Amethyst</span>
+                <span class="level-panel__holder">Beastular</span>
+            </a>
+        </div>
+    </div>    <div class="level-panel">
+        <div class="level-panel__container">
+            <a href="https://youtu.be/GeoLikgHBt8" target="_blank" class="level-panel__link level-panel__link--img-container">
+                <img class="lazyload level-panel__img" data-src="/data/previews/4e7SnkWQWvY.jpg" alt="" onload="imgLoaded(this)">
+            </a>
+            <a href="futurelist/44.html" class="level-panel__info level-panel__link">
+                <span class="level-panel__name">#16 - Spectre</span>
+                <span class="level-panel__holder">ezvie</span>
+            </a>
+        </div>
+    </div>    <div class="level-panel">
+        <div class="level-panel__container">
+            <a href="https://youtu.be/7yaKGl_2Dsw" target="_blank" class="level-panel__link level-panel__link--img-container">
+                <img class="lazyload level-panel__img" data-src="/data/previews/7yaKGl_2Dsw.jpg" alt="" onload="imgLoaded(this)">
+            </a>
+            <a href="futurelist/56.html" class="level-panel__info level-panel__link">
+                <span class="level-panel__name">#17 - HELIOPOLIS</span>
+                <span class="level-panel__holder">Pablohh</span>
+            </a>
+        </div>
+    </div>    <div class="level-panel">
+        <div class="level-panel__container">
+            <a href="https://youtu.be/88E_O9Uwgu8" target="_blank" class="level-panel__link level-panel__link--img-container">
+                <img class="lazyload level-panel__img" data-src="/data/previews/88E_O9Uwgu8.jpg" alt="" onload="imgLoaded(this)">
+            </a>
+            <a href="futurelist/31.html" class="level-panel__info level-panel__link">
+                <span class="level-panel__name">#18 - Sweeping Demon II</span>
+                <span class="level-panel__holder">Thnnder</span>
+            </a>
+        </div>
+    </div>    <div class="level-panel">
+        <div class="level-panel__container">
+            <a href="https://youtu.be/IPV-C9yROO8" target="_blank" class="level-panel__link level-panel__link--img-container">
+                <img class="lazyload level-panel__img" data-src="/data/previews/IPV-C9yROO8.jpg" alt="" onload="imgLoaded(this)">
+            </a>
+            <a href="futurelist/48.html" class="level-panel__info level-panel__link">
+                <span class="level-panel__name">#19 - Dead Silence</span>
+                <span class="level-panel__holder">-</span>
+            </a>
+        </div>
+    </div>    <div class="level-panel">
+        <div class="level-panel__container">
+            <a href="https://youtu.be/HDMMEpCWncg" target="_blank" class="level-panel__link level-panel__link--img-container">
+                <img class="lazyload level-panel__img" data-src="/data/previews/HDMMEpCWncg.jpg" alt="" onload="imgLoaded(this)">
+            </a>
+            <a href="futurelist/14.html" class="level-panel__info level-panel__link">
+                <span class="level-panel__name">#20 - Apocalyptic Trilogy</span>
+                <span class="level-panel__holder">Trick</span>
+            </a>
+        </div>
+    </div>    <div class="level-panel">
+        <div class="level-panel__container">
+            <a href="https://youtu.be/b-WlUBrqNZ4" target="_blank" class="level-panel__link level-panel__link--img-container">
+                <img class="lazyload level-panel__img" data-src="/data/previews/b-WlUBrqNZ4.jpg" alt="" onload="imgLoaded(this)">
+            </a>
+            <a href="futurelist/84.html" class="level-panel__info level-panel__link">
+                <span class="level-panel__name">#21 - Silent Helheim</span>
+                <span class="level-panel__holder">blazenik</span>
+            </a>
+        </div>
+    </div>    <div class="level-panel">
+        <div class="level-panel__container">
+            <a href="https://youtu.be/5LRLM5MEWak" target="_blank" class="level-panel__link level-panel__link--img-container">
+                <img class="lazyload level-panel__img" data-src="/data/previews/MFypx-hHozM.jpg" alt="" onload="imgLoaded(this)">
+            </a>
+            <a href="futurelist/69.html" class="level-panel__info level-panel__link">
+                <span class="level-panel__name">#22 - Waterfall</span>
+                <span class="level-panel__holder">LordVadercraft</span>
+            </a>
+        </div>
+    </div>    <div class="level-panel">
+        <div class="level-panel__container">
+            <a href="https://youtu.be/w4xRVYOn8oQ" target="_blank" class="level-panel__link level-panel__link--img-container">
+                <img class="lazyload level-panel__img" data-src="/data/previews/w4xRVYOn8oQ.jpg" alt="" onload="imgLoaded(this)">
+            </a>
+            <a href="futurelist/86.html" class="level-panel__info level-panel__link">
+                <span class="level-panel__name">#23 - Riots Demise</span>
+                <span class="level-panel__holder">eandis</span>
+            </a>
+        </div>
+    </div>    <div class="level-panel">
+        <div class="level-panel__container">
+            <a href="https://youtu.be/k9mLtwdIng4" target="_blank" class="level-panel__link level-panel__link--img-container">
+                <img class="lazyload level-panel__img" data-src="/data/previews/k9mLtwdIng4.jpg" alt="" onload="imgLoaded(this)">
+            </a>
+            <a href="futurelist/62.html" class="level-panel__info level-panel__link">
+                <span class="level-panel__name">#24 - Anathema</span>
+                <span class="level-panel__holder">rori</span>
+            </a>
+        </div>
+    </div>    <div class="level-panel">
+        <div class="level-panel__container">
+            <a href="https://youtu.be/Agp_1pBre5c" target="_blank" class="level-panel__link level-panel__link--img-container">
+                <img class="lazyload level-panel__img" data-src="/data/previews/Agp_1pBre5c.jpg" alt="" onload="imgLoaded(this)">
+            </a>
+            <a href="futurelist/68.html" class="level-panel__info level-panel__link">
+                <span class="level-panel__name">#25 - Flashbang</span>
+                <span class="level-panel__holder">-</span>
+            </a>
+        </div>
+    </div>    <div class="level-panel">
+        <div class="level-panel__container">
+            <a href="https://youtu.be/b_Mrg7PM-PQ" target="_blank" class="level-panel__link level-panel__link--img-container">
+                <img class="lazyload level-panel__img" data-src="/data/previews/b_Mrg7PM-PQ.jpg" alt="" onload="imgLoaded(this)">
+            </a>
+            <a href="futurelist/32.html" class="level-panel__info level-panel__link">
+                <span class="level-panel__name">#26 - The Yangire</span>
+                <span class="level-panel__holder">Dorami</span>
+            </a>
+        </div>
+    </div>    <div class="level-panel">
+        <div class="level-panel__container">
+            <a href="https://youtu.be/nH1j2evypQM" target="_blank" class="level-panel__link level-panel__link--img-container">
+                <img class="lazyload level-panel__img" data-src="/data/previews/nH1j2evypQM.jpg" alt="" onload="imgLoaded(this)">
+            </a>
+            <a href="futurelist/41.html" class="level-panel__info level-panel__link">
+                <span class="level-panel__name">#27 - Cersia Beginner</span>
+                <span class="level-panel__holder">Cersia</span>
+            </a>
+        </div>
+    </div>    <div class="level-panel">
+        <div class="level-panel__container">
+            <a href="https://youtu.be/JWUg2ZILWbM" target="_blank" class="level-panel__link level-panel__link--img-container">
+                <img class="lazyload level-panel__img" data-src="/data/previews/JWUg2ZILWbM.jpg" alt="" onload="imgLoaded(this)">
+            </a>
+            <a href="futurelist/90.html" class="level-panel__info level-panel__link">
+                <span class="level-panel__name">#28 - Eternal Silence</span>
+                <span class="level-panel__holder">open verification</span>
+            </a>
+        </div>
+    </div>    <div class="level-panel">
+        <div class="level-panel__container">
+            <a href="https://youtu.be/BDrMKX0FTms" target="_blank" class="level-panel__link level-panel__link--img-container">
+                <img class="lazyload level-panel__img" data-src="/data/previews/jHskEeV1ZI4.jpg" alt="" onload="imgLoaded(this)">
+            </a>
+            <a href="futurelist/72.html" class="level-panel__info level-panel__link">
+                <span class="level-panel__name">#29 - Atmos</span>
+                <span class="level-panel__holder">-</span>
+            </a>
+        </div>
+    </div>    <div class="level-panel">
+        <div class="level-panel__container">
+            <a href="https://youtu.be/4OKtgPe7g1A" target="_blank" class="level-panel__link level-panel__link--img-container">
+                <img class="lazyload level-panel__img" data-src="/data/previews/4OKtgPe7g1A.jpg" alt="" onload="imgLoaded(this)">
+            </a>
+            <a href="futurelist/73.html" class="level-panel__info level-panel__link">
+                <span class="level-panel__name">#30 - Dark Dimension</span>
+                <span class="level-panel__holder">nixuz</span>
+            </a>
+        </div>
+    </div>    <div class="level-panel">
+        <div class="level-panel__container">
+            <a href=" https://youtu.be/FxkMk4tvTCA" target="_blank" class="level-panel__link level-panel__link--img-container">
+                <img class="lazyload level-panel__img" data-src="/data/previews/FxkMk4tvTCA.jpg" alt="" onload="imgLoaded(this)">
+            </a>
+            <a href="futurelist/82.html" class="level-panel__info level-panel__link">
+                <span class="level-panel__name">#31 - Endless Travel</span>
+                <span class="level-panel__holder">TyakyoFyai</span>
+            </a>
+        </div>
+    </div>    </div>
+</div>
+
+<script>
+    function imgLoaded(img) {
+        var $img = $(img);
+
+        $img.parent().addClass('loaded');
+    };
+
+    $(document).ready(function() {
+		$(".level-panel__control--moveup").on("click", function() {
+			let data = this.dataset;
+
+			$.ajax({
+                url: `/api/level_future/`,
+                type: 'POST',
+                data: {
+                    action: "future-list-move_up",
+                    id: data.id,
+					cur_pos: data.place
+                },
+                success: function() {
+                    location.reload();
+                }
+            });
+		});
+
+        $(".level-panel__control--movedown").on("click", function() {
+			let data = this.dataset;
+
+			$.ajax({
+                url: `/api/level_future/`,
+                type: 'POST',
+                data: {
+                    action: "future-list-move_down",
+                    id: data.id,
+					cur_pos: data.place
+                },
+                success: function() {
+                    location.reload();
+                }
+            });
+		});
+	});
+</script><div class="backdrop">
+</div>
+<ul class="header header--mobile">
+    <div class="header__mobile-control">
+        <div class="navbar__mobile-btn navbar__mobile-btn--close">
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+
+    <li class="navbar__item">
+        <a href="javascript:void(0)" class="navbar__link navbar__link--dropdown-icon"><i class="bi bi-list"></i>
+            Lists</a>
+        <div class="navbar__dropdown-content">
+            <a class="navbar__link" href="index.htm">Main</a>
+            <a class="navbar__link" href="beyondlist.html">Beyond</a>
+            <a class="navbar__link" href="futurelist.html">Future</a>
+        </div>
+    </li>
+
+    <li class="navbar__item">
+        <a href="javascript:void(0)" class="navbar__link navbar__link--dropdown-icon"><i class="bi bi-grid"></i>
+            More</a>
+        <div class="navbar__dropdown-content">
+            <a class="navbar__link" href="submit.html">Record Submit</a>
+            <a class="navbar__link" href="suggest.html">Record Suggest</a>
+            <a class="navbar__link" href="level_submit.html">Level Submit</a>
+            <a class="navbar__link" href="top/players/index.htm">Top Players</a>
+            <a class="navbar__link" href="top/countries/main/index.htm">Top Countries (Main)</a>
+            <a class="navbar__link" href="top/countries/advanced/index.htm">Top Countries (Advanced)</a>
+            <a class="navbar__link" href="rules.html">Rules</a>
+            <a class="navbar__link" href="contacts.html">Contacts</a>
+            <a class="navbar__link" href="roulette.html">Demon Roulette</a>
+        </div>
+        
+    <li class="navbar__item">
+        <a href="javascript:void(0)" class="navbar__link navbar__link--dropdown-icon"><i class="bi bi-globe"></i>Language</a>
+        <div class="navbar__dropdown-content">
+            <a class="navbar__link lang-select" data-lang="en" href="javascript:void(0)">
+                <span class="fi fi-gb"></span>
+                English
+            </a>
+            <a class="navbar__link lang-select" data-lang="ru" href="javascript:void(0)">
+                <span class="fi fi-ru"></span>
+                Русский
+            </a>
+            <a class="navbar__link lang-select" data-lang="uk" href="javascript:void(0)">
+                <span class="fi fi-ua"></span>
+                Українська
+            </a>
+        </div>
+    </li>
+    <li class="navbar__item">
+        <a href="javascript:void(0)" class="navbar__link navbar__link--dropdown-icon"><i class="bi bi-newspaper"></i>Our Social</a>
+        <div class="navbar__dropdown-content">
+            <a class="navbar__link" href="https://discord.gg/va8jt85Tev">
+                <i class="bi bi-discord"></i>
+                Discord
+            </a>
+            <a class="navbar__link" href="https://t.me/rebuildthegloballist">
+                <i class="bi bi-telegram"></i>
+                Telegram
+            </a>
+        </div>
+    </li>
+    
+        <li class="navbar__item">
+            <a href="javascript:void(0)" class="navbar__link search-btn"><i class="bi bi-search"></i>Search</a>
+        </li>
+
+        
+        <li class="navbar__item">
+        <a class="navbar__link" href="signup.html"><i class="bi bi-rocket-takeoff"></i> Sign up</a>
+    </li>
+    <li class="navbar__item">
+        <a class="navbar__link" href="signin.html"><i class="bi bi-person"></i> Sign in</a>
+    </li></ul>        
+        <button class="scroll-to-top-btn">
+            <i class="bi bi-arrow-up"></i>
+        </button>
+        
+        <script>
+        
+        const scrollToTop = () => {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+        
+        const setupHTMLForSmoothScroll = () => {
+            $("html").css("scroll-behavior", "smooth");
+            
+            $(window).on("scroll", (e) => {
+                if (e.currentTarget.pageYOffset >= 500) {
+                    $(".scroll-to-top-btn").show("fast");
+                }
+                else {
+                    $(".scroll-to-top-btn").hide("fast");
+                }
+            })
+            
+            $(".scroll-to-top-btn").click(() => {
+                scrollToTop();
+            })
+        }
+        
+        addEventListener("DOMContentLoaded", (event) => {
+            setTimeout(() => {
+                setupHTMLForSmoothScroll();
+            }, 0);
+            
+        });
+        
+        </script>
+        
+        <style>
+            .scroll-to-top-btn {
+                display: none;
+                position: fixed;
+                right: 0px;
+                bottom: 0px;
+                margin-bottom: 15px;
+                margin-right: 15px;
+                border: 1px gray solid;
+                border-radius: 9px;
+                background-color: white;
+                color: black;
+                font-size: 14pt;
+                padding: 20px;
+                opacity: 0.5;
+                transition: 0.2s;
+            }
+            .scroll-to-top-btn:hover {
+                opacity: 1;
+            }
+        </style>
+        
+        
+<script src="npm/bootstrap%405.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+<script src="assets/js/token-logginer.js"></script>
+</body>
+</html>
